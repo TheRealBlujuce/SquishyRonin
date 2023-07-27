@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerAttack
+  - EnemyAttack
+  - Collision
+  - Torii
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Enemy
+  - Triggers
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: None
+    uniqueID: 1517270775
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Shadows
+    uniqueID: 14114071
+    locked: 0
+  - name: Background
+    uniqueID: 2585019423
+    locked: 0
+  - name: Actors
+    uniqueID: 1042870033
+    locked: 0
+  - name: Foreground
+    uniqueID: 2388710025
+    locked: 0
