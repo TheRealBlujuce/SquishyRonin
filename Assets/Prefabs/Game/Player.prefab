@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 7402719270039841813}
   - component: {fileID: 7402719270039841809}
   - component: {fileID: 7402719270039841806}
-  - component: {fileID: 1979631154}
+  - component: {fileID: 7669045926723748014}
   - component: {fileID: 7402719270039841812}
   - component: {fileID: 7402719270039841807}
   m_Layer: 0
@@ -373,7 +373,7 @@ Transform:
   - {fileID: 7402719269080772951}
   - {fileID: 7402719270044733790}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7402719270039841811
 SpriteRenderer:
@@ -464,10 +464,12 @@ MonoBehaviour:
   isRunning: 0
   isAttacking: 0
   isInteracting: 0
+  isBlocking: 0
+  isRolling: 0
   attackSquash: 0
   animCombo: 0
-  isBlocking: 0
   isBlockParryTiming: 0
+  isKnockedBack: 0
   collisionBox: {fileID: 7402719269080772950}
   actorSpriteRenderer: {fileID: 7402719270039841810}
   corpsePrefab: {fileID: 0}
@@ -491,6 +493,7 @@ MonoBehaviour:
   isCorpse: 0
   scaleSpeed: 0.5
   attackCombo: 0
+  corpseColor: {r: 0, g: 0, b: 0, a: 0}
   squashXAttack: 0.5
   squashYAttack: 0.5
   idle: {fileID: -1870048891, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
@@ -498,6 +501,7 @@ MonoBehaviour:
   attack: {fileID: 7402719270039841809}
   animCombo: 0
   parry: {fileID: 7402719270039841806}
+  roll: {fileID: 0}
 --- !u!114 &7402719270039841813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,19 +598,34 @@ MonoBehaviour:
   animateOnce: 1
   isAnimating: 0
   corpseAnimEnd: 0
---- !u!114 &1979631154
+--- !u!114 &7669045926723748014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7402719270039841817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09af9ec387353744098c391bc7cece46, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foregroundSortingLayerName: Foreground
+  spriteSetRun:
+  - {fileID: -16110116, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 650888775, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 1976847018, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: -1992124, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  spriteSetAttackOne: []
+  spriteSetAttackTwo: []
+  spriteSetParry: []
+  currentSpriteSet: []
+  framerate: 0.16666667
+  actorRenderer: {fileID: 7402719270039841811}
+  frame: 0
+  useFastFramerate: 0
+  animateOnce: 0
+  isAnimating: 0
+  corpseAnimEnd: 0
 --- !u!50 &7402719270039841812
 Rigidbody2D:
   serializedVersion: 4

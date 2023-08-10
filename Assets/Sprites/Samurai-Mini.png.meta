@@ -1496,7 +1496,7 @@ TextureImporter:
       name: Dirt-1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 32
         width: 16
         height: 16
@@ -1517,7 +1517,7 @@ TextureImporter:
       name: Dirt-2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 96
         y: 32
         width: 16
         height: 16
@@ -1538,7 +1538,7 @@ TextureImporter:
       name: Dirt-3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 112
         y: 32
         width: 16
         height: 16
@@ -1559,7 +1559,7 @@ TextureImporter:
       name: Water-1
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
         y: 32
         width: 16
         height: 16
@@ -1580,7 +1580,7 @@ TextureImporter:
       name: Water-2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 144
         y: 32
         width: 16
         height: 16
@@ -1601,7 +1601,7 @@ TextureImporter:
       name: Water-3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 32
         width: 16
         height: 16
@@ -1622,7 +1622,7 @@ TextureImporter:
       name: Stone-1
       rect:
         serializedVersion: 2
-        x: 160
+        x: 176
         y: 32
         width: 16
         height: 16
@@ -1643,7 +1643,7 @@ TextureImporter:
       name: Stone-2
       rect:
         serializedVersion: 2
-        x: 176
+        x: 192
         y: 32
         width: 16
         height: 16
@@ -1664,7 +1664,7 @@ TextureImporter:
       name: Stone-3
       rect:
         serializedVersion: 2
-        x: 192
+        x: 208
         y: 32
         width: 16
         height: 16
@@ -1706,7 +1706,7 @@ TextureImporter:
       name: Grass
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 16
         width: 16
         height: 16
@@ -1727,7 +1727,7 @@ TextureImporter:
       name: Dirt-4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 16
         width: 16
         height: 16
@@ -1748,7 +1748,7 @@ TextureImporter:
       name: Dirt-5
       rect:
         serializedVersion: 2
-        x: 80
+        x: 96
         y: 16
         width: 16
         height: 16
@@ -1769,7 +1769,7 @@ TextureImporter:
       name: Dirt-6
       rect:
         serializedVersion: 2
-        x: 96
+        x: 112
         y: 16
         width: 16
         height: 16
@@ -1790,7 +1790,7 @@ TextureImporter:
       name: Water-4
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
         y: 16
         width: 16
         height: 16
@@ -1811,7 +1811,7 @@ TextureImporter:
       name: Water-5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 144
         y: 16
         width: 16
         height: 16
@@ -1832,7 +1832,7 @@ TextureImporter:
       name: Water-6
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 16
         width: 16
         height: 16
@@ -1853,7 +1853,7 @@ TextureImporter:
       name: Stone-4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 176
         y: 16
         width: 16
         height: 16
@@ -1874,7 +1874,7 @@ TextureImporter:
       name: Stone-5
       rect:
         serializedVersion: 2
-        x: 176
+        x: 192
         y: 16
         width: 16
         height: 16
@@ -1895,7 +1895,7 @@ TextureImporter:
       name: Stone-6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 208
         y: 16
         width: 16
         height: 16
@@ -1916,7 +1916,7 @@ TextureImporter:
       name: Grass-GrassBlades
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
         width: 16
         height: 16
@@ -1937,7 +1937,7 @@ TextureImporter:
       name: Dirt-7
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 0
         width: 16
         height: 16
@@ -1958,7 +1958,7 @@ TextureImporter:
       name: Dirt-8
       rect:
         serializedVersion: 2
-        x: 80
+        x: 96
         y: 0
         width: 16
         height: 16
@@ -1979,7 +1979,7 @@ TextureImporter:
       name: Dirt-9
       rect:
         serializedVersion: 2
-        x: 96
+        x: 112
         y: 0
         width: 16
         height: 16
@@ -2000,7 +2000,7 @@ TextureImporter:
       name: Water-7
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
         y: 0
         width: 16
         height: 16
@@ -2021,7 +2021,7 @@ TextureImporter:
       name: Water-8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 144
         y: 0
         width: 16
         height: 16
@@ -2042,7 +2042,7 @@ TextureImporter:
       name: Water-9
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 0
         width: 16
         height: 16
@@ -2063,7 +2063,7 @@ TextureImporter:
       name: Stone-7
       rect:
         serializedVersion: 2
-        x: 160
+        x: 176
         y: 0
         width: 16
         height: 16
@@ -2084,7 +2084,7 @@ TextureImporter:
       name: Stone-8
       rect:
         serializedVersion: 2
-        x: 176
+        x: 192
         y: 0
         width: 16
         height: 16
@@ -2105,7 +2105,7 @@ TextureImporter:
       name: Stone-9
       rect:
         serializedVersion: 2
-        x: 192
+        x: 208
         y: 0
         width: 16
         height: 16
@@ -2231,7 +2231,7 @@ TextureImporter:
       name: Ground-Leaves
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 32
         width: 16
         height: 16
@@ -2252,7 +2252,7 @@ TextureImporter:
       name: Ground-Leaves-Maple
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 48
         width: 16
         height: 16
@@ -2273,7 +2273,7 @@ TextureImporter:
       name: Ground-Leaves-Birch
       rect:
         serializedVersion: 2
-        x: 80
+        x: 96
         y: 48
         width: 16
         height: 16
@@ -2294,7 +2294,7 @@ TextureImporter:
       name: Ground-Leaves-Sakura
       rect:
         serializedVersion: 2
-        x: 96
+        x: 111
         y: 48
         width: 16
         height: 16
@@ -2651,7 +2651,7 @@ TextureImporter:
       name: GrassBlades
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
         y: 48
         width: 16
         height: 10
@@ -2711,15 +2711,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-C-1
+      name: Player-Roll-1
       rect:
         serializedVersion: 2
         x: 0
         y: 128
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2732,15 +2732,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack-C-2
+      name: Player-Roll-2
       rect:
         serializedVersion: 2
         x: 16
         y: 128
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2769,6 +2769,48 @@ TextureImporter:
       bones: []
       spriteID: d5aa5196ddf18fd43b6b0979a0c0cdb3
       internalID: 1763320945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-Roll-3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f331be40e77b342836690c28fac896
+      internalID: -985247738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-Roll-4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ee0152142fbf9943aa512ae6eca02cb
+      internalID: -2134961550
       vertices: []
       indices: 
       edges: []
@@ -2831,7 +2873,6 @@ TextureImporter:
       Water-8: -1466818364
       Player-Dead-3: 662338822
       Samurai-Mini_38: -1908880686
-      Attack-C-1: 380449697
       Oni-Walk-4: 123143508
       Stone-3: 1350763256
       Samurai-Mini_2: -1438054125
@@ -2861,6 +2902,7 @@ TextureImporter:
       Ground-Leaves-Maple: -1914070260
       Player-Idle-Unsheathed: -1870048891
       GrassBlades: 1852454783
+      Player-Roll-3: -985247738
       Oni-Walk-3: -825150183
       Oni-Attack-B-2: 103942976
       Stone-5: -382276293
@@ -2876,6 +2918,7 @@ TextureImporter:
       Oni-Run-4: 439190137
       Samurai-Mini_24: 1741213125
       Player-Dead-1: -669297264
+      Player-Roll-1: 380449697
       Stone-8: 1834409424
       Dirt-9: 1034948052
       Player-Attack-B-1: -374386213
@@ -2891,7 +2934,6 @@ TextureImporter:
       Stone-2: 136941463
       Oni-Block-3: -1604077781
       Blood-Effect-2: 1356572863
-      Attack-C-2: -777749997
       Samurai-Mini_89: 82262994
       Player-Block-3: -1727159413
       Samurai-Mini_14: 324615579
@@ -2912,9 +2954,11 @@ TextureImporter:
       Oni-Attack-A-4: 91072382
       Samurai-Mini_13: -912897218
       Oni-Idle-Sheathed: 1977879173
+      Player-Roll-2: -777749997
       Oni-Run-1: 1455865267
       Player-Attack-A-2: 1902311761
       Player-Idle-Sheathed: -1884349349
+      Player-Roll-4: -2134961550
       Samurai-Mini_62: -635617666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

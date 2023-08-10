@@ -62,6 +62,9 @@ public class ActorSpriteRenderer : MonoBehaviour
     [Header("Parry Sprite")]
     public AnimatedSprite parry;
 
+    [Header("Roll Sprite")]
+    public AnimatedSprite roll;
+
 
 
 
@@ -90,7 +93,7 @@ public class ActorSpriteRenderer : MonoBehaviour
     
         if (actorMovement != null)
         {
-            if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking)
+            if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
             { 
                 attack.StopAnimating();
                 run.currentSpriteSet = run.spriteSetRun; 
@@ -101,7 +104,7 @@ public class ActorSpriteRenderer : MonoBehaviour
                 }
             }
             else
-            if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking)
+            if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
             { actorRenderer.sprite = idle; run.StopAnimating(); run.enabled = actorMovement.isMoving; }
 
         }
@@ -117,7 +120,7 @@ public class ActorSpriteRenderer : MonoBehaviour
             Vector3 targetScale = new Vector3(targetXScale, targetYScale, 1f);
             if (actorMovement != null)
             {
-                if (actorMovement.isAttacking && actorMovement.attackSquash)
+                if ((actorMovement.isAttacking || actorMovement.isRolling) && actorMovement.attackSquash)
                 {
                     actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, targetScale, scaleSpeed * Time.deltaTime); 
                 }

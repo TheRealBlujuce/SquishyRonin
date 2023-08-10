@@ -14083,7 +14083,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788521106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -16066,6 +16066,10 @@ PrefabInstance:
       value: tryAgainText
       objectReference: {fileID: 0}
     - target: {fileID: 5421319443173320384, guid: eec7649c2deaa024c8dbcc55f929dd54, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421319443173320384, guid: eec7649c2deaa024c8dbcc55f929dd54, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1557646128}
@@ -16299,6 +16303,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 190033795, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
     - target: {fileID: 7402719270039841810, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: roll
+      value: 
+      objectReference: {fileID: 7402719268641909311}
+    - target: {fileID: 7402719270039841810, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
       propertyPath: scaleSpeed
       value: 48
       objectReference: {fileID: 0}
@@ -16358,12 +16366,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: spriteSetRun.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: spriteSetRun.Array.data[0]
+      value: 
+      objectReference: {fileID: 380449697, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+    - target: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: spriteSetRun.Array.data[1]
+      value: 
+      objectReference: {fileID: -777749997, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+    - target: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: spriteSetRun.Array.data[2]
+      value: 
+      objectReference: {fileID: -985247738, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+    - target: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: spriteSetRun.Array.data[3]
+      value: 
+      objectReference: {fileID: -2134961550, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+    - target: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+      propertyPath: spriteSetRun.Array.data[4]
+      value: 
+      objectReference: {fileID: -2134961550, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
     m_RemovedComponents:
     - {fileID: 1979631154, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+--- !u!114 &7402719268641909311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7669045926723748014, guid: c68e629e1eb364248b3b7c28b799a8aa, type: 3}
+  m_PrefabInstance: {fileID: 7402719268641909310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8887474935165948054
 PrefabInstance:
   m_ObjectHideFlags: 0

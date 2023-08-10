@@ -21,9 +21,11 @@ public class PlayerController : MonoBehaviour
     public bool isRunning;
     public bool isAttacking;
     public bool isInteracting;
+    public bool isBlocking;
+    public bool isRolling;
+    public bool canBeHit; // this is to apply I-Frames to the player  when rolling
     public bool attackSquash;
     public int animCombo = 0;
-    public bool isBlocking;
     public bool isBlockParryTiming;
     public bool isKnockedBack;
 
@@ -51,7 +53,6 @@ public class PlayerController : MonoBehaviour
         
         // Read moving and running input from the Input System
         if (movementInput.x != 0 || movementInput.y != 0) { isMoving = true; } else { isMoving = false; }
-        isRunning = currentGameInput.PlayerMovement.Run.IsPressed();
 
         // Flip the renderer if the player is moving
         if (!isAttacking && movementInput.x > 0 ) { actorRenderer.flipX = false; } else if (!isAttacking && movementInput.x < 0 ) { actorRenderer.flipX = true; }
@@ -74,10 +75,26 @@ public class PlayerController : MonoBehaviour
    
         }
 
+        // Read attack input from the Input System
+        if (currentGameInput.PlayerMovement.Run.triggered)
+        {
+            if (!isRolling && !isRunning)
+            {
+                isRolling = true;
+                StartCoroutine(PerformRoll());
+            }
+   
+        }
+
+        if (!currentGameInput.PlayerMovement.Run.IsPressed() && isRunning && !isRolling)
+        {
+            isRunning = false;
+        }
+
         // Read block input from the Input System
         if (currentGameInput.PlayerMovement.Block.triggered)
         {
-            if (!isBlocking )
+            if (!isBlocking)
             {
                 isBlocking = true;
                 isAttacking = false;
@@ -85,6 +102,7 @@ public class PlayerController : MonoBehaviour
             }
    
         }
+
 
         
         // Check if the player is in the block parry timing window
@@ -115,7 +133,7 @@ public class PlayerController : MonoBehaviour
         //     movementVelocity *= attackMovementSpeedMultiplier;
         // }
 
-        if (!isAttacking && !isBlocking)
+        if (!isAttacking && !isBlocking && !isRolling)
         {
             // Apply movement velocity to the rigidbody
             rb.velocity = movementVelocity;
@@ -141,6 +159,10 @@ public class PlayerController : MonoBehaviour
     {
         return isAttacking;
     }
+    public bool CheckIsRolling()
+    {
+        return isRolling;
+    }
 
     public PlayerInput GetPlayerInput()
     {
@@ -156,10 +178,12 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(attackMoveDirection * knockbackForce, ForceMode2D.Impulse);
         attackSquash = true;
 
+        actorSpriteRenderer.run.StopAnimating();
+        actorSpriteRenderer.roll.StopAnimating();
+
         switch(animCombo)
         {
             case 0:
-                actorSpriteRenderer.run.StopAnimating();
                 actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne; 
                 actorSpriteRenderer.attack.AnimateOnce();
                 actorSpriteRenderer.attack.enabled = isAttacking;
@@ -170,7 +194,6 @@ public class PlayerController : MonoBehaviour
                 if (animCombo > 1){ animCombo = 0; }
             break;
             case 1:
-                actorSpriteRenderer.run.StopAnimating();
                 actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackTwo; 
                 actorSpriteRenderer.attack.AnimateOnce();
                 actorSpriteRenderer.attack.enabled = isAttacking;
@@ -209,6 +232,62 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private IEnumerator PerformRoll()
+    {
+        canBeHit = false;
+        // Calculate the attackMoveDirection based on the stored attackAngle
+        Vector2 rollMoveDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
+
+        // stop any other animations
+        actorSpriteRenderer.run.StopAnimating();
+        actorSpriteRenderer.attack.StopAnimating();
+        actorSpriteRenderer.parry.StopAnimating();
+
+        // temporarily disable the collision box so that the player can go through enemies.
+        GetComponent<BoxCollider2D>().enabled = false;
+
+        // play the roll animation
+        actorSpriteRenderer.roll.currentSpriteSet = actorSpriteRenderer.roll.spriteSetRun; 
+        actorSpriteRenderer.roll.AnimateOnce();
+        actorSpriteRenderer.roll.enabled = isRolling;
+
+        // apply force to the rb
+        rb.velocity = Vector2.zero;
+        rb.AddForce(rollMoveDirection * knockbackForce, ForceMode2D.Impulse);
+        attackSquash = true;
+
+        yield return new WaitForSeconds(0.2f);
+        
+        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.6f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        attackSquash = false;
+
+        yield return new WaitForSeconds(0.1f);
+
+        actorSpriteRenderer.roll.StopAnimating();
+
+        if (actorSpriteRenderer.roll.isAnimating == false)
+        {
+            //Debug.Log("No longer Attacking!");
+            actorSpriteRenderer.roll.frame = 0;
+            rb.velocity = Vector2.zero;
+            isRolling = false;
+            actorSpriteRenderer.roll.enabled = isRolling;
+            // Re-enable the collision box and set the player to running and reset the canBeHit flag.
+            GetComponent<BoxCollider2D>().enabled = true;
+            isRunning = true;
+            canBeHit = true;
+        }
+        else
+        {
+            // Debug.Log(actorSpriteRenderer.attack.isAnimating);
+        }
+
+    }
+
     private IEnumerator PerformBlock()
     {
         
@@ -273,7 +352,7 @@ public class PlayerController : MonoBehaviour
                     // collision.enabled = false;
                     ApplyKnockback(knockbackMoveDirection, knockbackForce);
                 }
-                else if (!isBlocking && !isBlockParryTiming)
+                else if (!isBlocking && !isBlockParryTiming && canBeHit)
                 {
                     // Debug.LogWarning("Player is Dead!");
                     // Destroy the player and instantiate a corpse object
