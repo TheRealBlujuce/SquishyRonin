@@ -9,7 +9,7 @@ public class SpawnerTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player enters the trigger area
-        if (other.CompareTag("Player"))
+        if (other.isTrigger && other.CompareTag("Player"))
         {
             // Show the "Press F to Start" text (you can implement this with UI or a Text component)
             // Set a boolean or trigger animation to display the text to guide the player.

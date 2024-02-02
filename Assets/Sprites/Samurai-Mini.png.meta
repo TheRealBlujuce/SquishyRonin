@@ -2190,7 +2190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 172
-        y: 61
+        y: 50
         width: 56
         height: 40
       alignment: 0
@@ -2211,7 +2211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
+        y: 48
         width: 32
         height: 36
       alignment: 9
@@ -2294,7 +2294,7 @@ TextureImporter:
       name: Ground-Leaves-Sakura
       rect:
         serializedVersion: 2
-        x: 111
+        x: 112
         y: 48
         width: 16
         height: 16
@@ -2651,10 +2651,10 @@ TextureImporter:
       name: GrassBlades
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 48
         width: 16
-        height: 10
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2815,6 +2815,300 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Hitbox-fade-1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84975b4085370c48bd2e3c2d239c6d3
+      internalID: -1625091433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hitbox-fade-2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b218e85fab9612444aaccf1776f63ea8
+      internalID: -1801901738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Walk-1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6876a3ffa026b3145a4c2404725b38ca
+      internalID: 1166090682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Walk-2
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 906a31cf2ca77954890ff88cd43e68e0
+      internalID: 894095994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Walk-3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f3fa97403cf6b34883072242c416ca6
+      internalID: -289771362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Walk-4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d71f88045f02f4fab8c9bf1ad45dbf
+      internalID: 398551878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Attack-1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14dca6e26ff94b94e98cd5670a0a384d
+      internalID: 74048845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Attack-2
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f22c179cee5394bba5920f0fddb566
+      internalID: -1107333788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Attack-3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879f4d5e901df61439bf1208acccc7dd
+      internalID: 430842556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Attack-4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f7a4b5761c18248b44a34a07acd8b6
+      internalID: 1912598971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Dead-1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c83cfc590a52354ea6669a8df8d16d9
+      internalID: 1633501474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Dead-2
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46326efd55a71f4a9ae52d035b9153d
+      internalID: -24004235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Dead-3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 563b87292e93952439ea40aa8f941b9d
+      internalID: -1547335908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Regret-Dead-4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e08ddf581286314093b249bbb6ab4b3
+      internalID: 1397942893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2837,9 +3131,11 @@ TextureImporter:
       Samurai-Mini_36: 1088097329
       Samurai-Mini_3: 2001877721
       Water-4: 1984268718
+      Regret-Walk-4: 398551878
       Blood-Effect-3: -360394300
       Dirt-1: -1399581653
       Oni-Dead-4: 518185218
+      Regret-Dead-2: -24004235
       Dirt-3: -964630856
       Water-6: -1860717959
       Samurai-Mini_47: -1352099984
@@ -2858,6 +3154,7 @@ TextureImporter:
       Dirt-6: -790661157
       Oni-Run-2: 880827077
       Oni-Attack-A-2: 1020011677
+      Regret-Walk-1: 1166090682
       Samurai-Mini_77: -346894708
       Shadow: -1780077496
       Player-Attack-A-3: 18643915
@@ -2882,11 +3179,14 @@ TextureImporter:
       HitBox-1: -1657446375
       Player-Walk-4: 1412164896
       Water-5: 935193999
+      Regret-Attack-4: 1912598971
       Stone-7: -1324764046
+      Regret-Dead-1: 1633501474
       Player-Block-4: -407221889
       Samurai-Mini_12: 1823755147
       Player-Block-2: 1383424954
       Oni-Block-2: 1634468430
+      Regret-Dead-3: -1547335908
       Player-Dead-2: 994044599
       Direction-Pointer: 195494587
       Stone-6: -446651513
@@ -2900,14 +3200,14 @@ TextureImporter:
       Player-Run-3: 1976847018
       Dirt-7: 1583402884
       Ground-Leaves-Maple: -1914070260
-      Player-Idle-Unsheathed: -1870048891
-      GrassBlades: 1852454783
       Player-Roll-3: -985247738
+      GrassBlades: 1852454783
       Oni-Walk-3: -825150183
       Oni-Attack-B-2: 103942976
       Stone-5: -382276293
       Oni-Idle-Unsheathed: 1631178276
       Ground-Leaves-Birch: -645479025
+      Player-Idle-Unsheathed: -1870048891
       Blood-Effect-1: -1191799202
       AttackIndicator: 1763320945
       Grass-GrassBlades: 1839868943
@@ -2922,6 +3222,7 @@ TextureImporter:
       Stone-8: 1834409424
       Dirt-9: 1034948052
       Player-Attack-B-1: -374386213
+      Regret-Attack-1: 74048845
       Oni-Attack-B-4: 1172876362
       Trigger-Area: -478230790
       Water-9: -1538734904
@@ -2930,6 +3231,7 @@ TextureImporter:
       Oni-Walk-2: -1641646642
       Blood-Puddle: 1710192763
       Oni-Attack-A-1: -2021314944
+      Regret-Walk-2: 894095994
       Ground-Leaves-Sakura: -1632619012
       Stone-2: 136941463
       Oni-Block-3: -1604077781
@@ -2943,12 +3245,15 @@ TextureImporter:
       Player-Attack-B-4: 190033795
       Dirt-2: 168678701
       Oni-Walk-1: -1151396783
+      Regret-Walk-3: -289771362
       ButtonBg: 475943364
+      Regret-Attack-3: 430842556
       Grass: -1000508839
       Hitbox: -847316566
       Samurai-Mini_11: 1469263217
       Samurai-Mini_6: -183208456
       Samurai-Mini_49: -1621152971
+      Regret-Dead-4: 1397942893
       Dirt-4: -1415577149
       Oni-Dead-1: 1175858897
       Oni-Attack-A-4: 91072382
@@ -2956,8 +3261,11 @@ TextureImporter:
       Oni-Idle-Sheathed: 1977879173
       Player-Roll-2: -777749997
       Oni-Run-1: 1455865267
+      Hitbox-fade-2: -1801901738
+      Hitbox-fade-1: -1625091433
       Player-Attack-A-2: 1902311761
       Player-Idle-Sheathed: -1884349349
+      Regret-Attack-2: -1107333788
       Player-Roll-4: -2134961550
       Samurai-Mini_62: -635617666
   mipmapLimitGroupName: 

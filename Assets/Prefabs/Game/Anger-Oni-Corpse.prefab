@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5860845829112522356}
   - component: {fileID: 5860845829112522359}
   m_Layer: 0
-  m_Name: Player-Corpse
+  m_Name: Anger-Oni-Corpse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_SortingLayerID: 1042870033
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -120332940, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  m_Sprite: {fileID: 1175858897, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -272,12 +272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteSetRun:
-  - {fileID: -120332940, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: -120332940, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: 2080688218, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: 2080688218, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: -1653127714, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: 627409527, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  - {fileID: 1175858897, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 1175858897, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 2126688146, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 2126688146, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 2126688146, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 2126688146, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: -273273677, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 518185218, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -285,7 +287,7 @@ MonoBehaviour:
   framerate: 0.16666667
   actorRenderer: {fileID: 5860845829112522355}
   frame: 0
-  useFastFramerate: 1
+  useFastFramerate: 0
   animateOnce: 1
   isAnimating: 0
   corpseAnimEnd: 0
@@ -313,7 +315,7 @@ MonoBehaviour:
   corpseColor: {r: 1, g: 1, b: 1, a: 0.88235295}
   squashXAttack: 0.5
   squashYAttack: 0.5
-  idle: {fileID: 627409527, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  idle: {fileID: 518185218, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   run: {fileID: 5860845829112522358}
   attack: {fileID: 0}
   animCombo: 0

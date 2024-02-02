@@ -152,7 +152,7 @@ public class GameController : MonoBehaviour
         if (currentGameState == GameState.MENU)
         {
             gameInput.Disable();
-            SceneManager.LoadScene("Map_MapleForest");
+            SceneManager.LoadScene("World_Map");
             // StartCoroutine(DelayedLocalizationUpdate());
             localization.SetLanguage(localization.currentLanguage);
             NewGame();

@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public bool isInteracting;
     public bool isBlocking;
     public bool isRolling;
-    public bool canBeHit; // this is to apply I-Frames to the player  when rolling
+    public bool canBeHit = true; // this is to apply I-Frames to the player  when rolling
     public bool attackSquash;
     public int animCombo = 0;
     public bool isBlockParryTiming;
@@ -32,8 +32,9 @@ public class PlayerController : MonoBehaviour
     private float attackAngle;
     private Vector2 movementDirection;
     private Rigidbody2D rb;
-    private SpriteRenderer actorRenderer;
-    [SerializeField] private GameObject collisionBox;
+    [SerializeField] private SpriteRenderer actorRenderer;
+    [SerializeField] private GameObject collisionHitBox;
+    [SerializeField] private BoxCollider2D collisionTriggerBox;
     [SerializeField] private ActorSpriteRenderer actorSpriteRenderer;
     public GameObject corpsePrefab;
 
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentGameInput = GameController.gameControllerInstance.gameInput;
-        actorRenderer = GetComponent<SpriteRenderer>();
+        actorRenderer = GetComponentInChildren<SpriteRenderer>();
         player = GetComponent<Player>();
         
     }
@@ -61,13 +62,13 @@ public class PlayerController : MonoBehaviour
         if ( !isAttacking && movementVelocity != Vector2.zero)
         {
             attackAngle = Mathf.Atan2(movementVelocity.y, movementVelocity.x) * Mathf.Rad2Deg;
-            collisionBox.transform.rotation = (Quaternion.Lerp(collisionBox.transform.rotation, Quaternion.AngleAxis(attackAngle, Vector3.forward), 32f * Time.deltaTime));
+            collisionHitBox.transform.rotation = Quaternion.Lerp(collisionHitBox.transform.rotation, Quaternion.AngleAxis(attackAngle, Vector3.forward), 32f * Time.deltaTime);
         }
 
         // Read attack input from the Input System
         if (currentGameInput.PlayerMovement.Attack.triggered)
         {
-            if (!isAttacking && !isBlocking)
+            if (!isAttacking && !isBlocking && !isRolling)
             {
                 isAttacking = true;
                 StartCoroutine(PerformAttack());
@@ -163,7 +164,6 @@ public class PlayerController : MonoBehaviour
     {
         return isRolling;
     }
-
     public PlayerInput GetPlayerInput()
     {
         return currentGameInput;
@@ -188,9 +188,9 @@ public class PlayerController : MonoBehaviour
                 actorSpriteRenderer.attack.AnimateOnce();
                 actorSpriteRenderer.attack.enabled = isAttacking;
                 animCombo++;
-                collisionBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
-                collisionBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
-                collisionBox.GetComponentInChildren<BoxCollider2D>().isTrigger = true;
+                collisionHitBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
+                collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
+                collisionHitBox.GetComponentInChildren<BoxCollider2D>().isTrigger = true;
                 if (animCombo > 1){ animCombo = 0; }
             break;
             case 1:
@@ -198,30 +198,51 @@ public class PlayerController : MonoBehaviour
                 actorSpriteRenderer.attack.AnimateOnce();
                 actorSpriteRenderer.attack.enabled = isAttacking;
                 animCombo++;
-                collisionBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
-                collisionBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
-                collisionBox.GetComponentInChildren<BoxCollider2D>().isTrigger = true;
+                collisionHitBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
+                collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
+                collisionHitBox.GetComponentInChildren<BoxCollider2D>().isTrigger = true;
                 if (animCombo > 1){ animCombo = 0; }
             break;
         }
 
         yield return new WaitForSeconds(0.1f);
         
-        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
-        collisionBox.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        if (!isRolling)
+        {
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
+        }
+        // Hitbox Animation
+        yield return new WaitForSeconds(0.025f);
+        // Wait for a second frame
+        yield return new WaitForEndOfFrame();
+
+        collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.StopAnimating();  
+        
+        if (collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.isAnimating != true)
+        {
+            collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.enabled = false;
+            collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.frame = 0;
+            collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        }
+
+        // End Squash
         attackSquash = false;
 
         yield return new WaitForSeconds(0.3f);
 
-        rb.velocity = Vector2.zero;
+        if (!isRolling)
+        {
+            rb.velocity = Vector2.zero; 
+        }
+
         actorSpriteRenderer.attack.StopAnimating();
 
         if (actorSpriteRenderer.attack.isAnimating == false)
         {
             //Debug.Log("No longer Attacking!");
             actorSpriteRenderer.attack.frame = 0;
-            collisionBox.GetComponentInChildren<BoxCollider2D>().enabled = false;
-            collisionBox.GetComponentInChildren<BoxCollider2D>().isTrigger = false;
+            collisionHitBox.GetComponentInChildren<BoxCollider2D>().enabled = false;
+            collisionHitBox.GetComponentInChildren<BoxCollider2D>().isTrigger = false;
             
             isAttacking = false;
             actorSpriteRenderer.attack.enabled = isAttacking;
@@ -238,46 +259,47 @@ public class PlayerController : MonoBehaviour
         canBeHit = false;
         // Calculate the attackMoveDirection based on the stored attackAngle
         Vector2 rollMoveDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
-
+        
         // stop any other animations
         actorSpriteRenderer.run.StopAnimating();
         actorSpriteRenderer.attack.StopAnimating();
         actorSpriteRenderer.parry.StopAnimating();
 
         // temporarily disable the collision box so that the player can go through enemies.
-        GetComponent<BoxCollider2D>().enabled = false;
+        collisionTriggerBox.enabled = false;
 
         // play the roll animation
         actorSpriteRenderer.roll.currentSpriteSet = actorSpriteRenderer.roll.spriteSetRun; 
+        actorSpriteRenderer.roll.frame = 0;
         actorSpriteRenderer.roll.AnimateOnce();
         actorSpriteRenderer.roll.enabled = isRolling;
 
         // apply force to the rb
         rb.velocity = Vector2.zero;
-        rb.AddForce(rollMoveDirection * knockbackForce, ForceMode2D.Impulse);
+        rb.AddForce(rollMoveDirection * (knockbackForce + movementSpeed), ForceMode2D.Impulse);
         attackSquash = true;
 
         yield return new WaitForSeconds(0.2f);
         
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.6f);
-
-        yield return new WaitForSeconds(0.1f);
+        collisionTriggerBox.enabled = true;
+        
+        yield return new WaitForSeconds(0.125f);
 
         attackSquash = false;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         actorSpriteRenderer.roll.StopAnimating();
 
         if (actorSpriteRenderer.roll.isAnimating == false)
         {
             //Debug.Log("No longer Attacking!");
-            actorSpriteRenderer.roll.frame = 0;
+            
             rb.velocity = Vector2.zero;
             isRolling = false;
             actorSpriteRenderer.roll.enabled = isRolling;
             // Re-enable the collision box and set the player to running and reset the canBeHit flag.
-            GetComponent<BoxCollider2D>().enabled = true;
             isRunning = true;
             canBeHit = true;
         }
@@ -326,7 +348,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     public void ApplyKnockback(Vector2 knockbackDirection, float knockbackForce)
     {
         isKnockedBack = true;
@@ -335,7 +356,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
     }
 
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the player's attack hits the enemy
@@ -369,7 +389,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private Rect GetScreenBounds()
     {
         float cameraHeight = Camera.main.orthographicSize;
@@ -402,6 +421,5 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, screenBounds.yMax, transform.position.z);
         }
     }
-
 
 }

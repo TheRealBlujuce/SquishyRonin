@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;      // The enemy prefab to spawn
+    public List<GameObject> enemyPrefabs = new List<GameObject>();      // The enemy prefab to spawn
     public Transform spawnPoint;        // The spawn point of the enemies
     public float waveDuration = 60f;    // Duration of each wave (in seconds)
     public float timeBetweenWaves = 5f; // Time between waves (in seconds)
@@ -154,15 +155,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {   
+        float chooseEnemy = Random.value;
         Vector2 spawnPos = new Vector2(spawnPoint.position.x, spawnPoint.position.y - 1f);
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        if (chooseEnemy< 0.5) { Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity); }
+        else
+        if (chooseEnemy > 0.5) { Instantiate(enemyPrefabs[1], spawnPos, Quaternion.identity); }
     }
 
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player enters the trigger area
-        if (other.CompareTag("Player") && canStartNextWave)
+        if (other.isTrigger && other.CompareTag("Player") && canStartNextWave)
         {
             // Show the "Press F to Start" text (you can implement this with UI or a Text component)
             // Set a boolean or trigger animation to display the text to guide the player.
@@ -177,7 +181,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.isTrigger && other.CompareTag("Player"))
         {
             playerIsInTrigger = true;   
         }
@@ -186,7 +190,7 @@ public class EnemySpawner : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         // Check if the player leaves the trigger area
-        if (other.CompareTag("Player"))
+        if (other.isTrigger && other.CompareTag("Player"))
         {
             // Hide the "Press F to Start" text (you can implement this with UI or a Text component)
             // Set a boolean or trigger animation to hide the text.

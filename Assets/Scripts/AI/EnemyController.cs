@@ -1,8 +1,17 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public enum EnemyType{
+        ANGER,
+        REGRET,
+        LUST,
+        DOUBT
+    }
+
+    public EnemyType enemytype = EnemyType.ANGER;
     public float movementSpeed = 3f;
     public float attackRange = 8f;
     public float blockChance = 0.5f;
@@ -14,7 +23,7 @@ public class EnemyController : MonoBehaviour
     private Transform player;
     private Player playerObject;
     private Rigidbody2D rb;
-    private SpriteRenderer actorRenderer;
+    [SerializeField] private SpriteRenderer actorRenderer;
     private ActorSpriteRenderer actorSpriteRenderer;
     [SerializeField] private GameObject collisionBox;
     Vector2 moveDirection;
@@ -24,6 +33,7 @@ public class EnemyController : MonoBehaviour
     public bool isKnockedBack;
     public bool attackSquash;
     public bool isDead;
+    public bool applyKnockback;
     private int animCombo = 0;
     private float attackAngle;
     private IEnumerator performAttackCoroutine;
@@ -33,9 +43,13 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-        actorRenderer = GetComponent<SpriteRenderer>();
-        actorSpriteRenderer = GetComponent<ActorSpriteRenderer>();
+        actorSpriteRenderer = GetComponentInChildren<ActorSpriteRenderer>();
         playerObject = FindObjectOfType<Player>();
+    }
+
+    private void Start()
+    {
+        moveDirection = (player.position - transform.position).normalized;
     }
 
     private void FixedUpdate()
@@ -50,7 +64,7 @@ public class EnemyController : MonoBehaviour
                     // Move towards the player
                     moveDirection = (player.position - transform.position).normalized;
 
-                    if (!isBlocking)
+                    if (!isAttacking && !isBlocking)
                     { 
                         rb.velocity = moveDirection * movementSpeed; 
                         isMoving = true;
@@ -70,10 +84,10 @@ public class EnemyController : MonoBehaviour
                         attackAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
                         collisionBox.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
                     }
-                    
+
                 }
                 else
-                if (distanceToPlayer <= attackRange || distanceToPlayer < 0.75f){
+                if (distanceToPlayer <= attackRange){
                    
                     isMoving = false;
                     actorSpriteRenderer.run.StopAnimating();
@@ -81,17 +95,38 @@ public class EnemyController : MonoBehaviour
                     // Stop moving and perform an attack
                     if (!isAttacking && !isBlocking)
                     {
-                        // Perform Attack
-                        isAttacking = true;
-                        isBlocking = false;
-                        StopBlockCoroutine(); // Stop the attack coroutine if it's running
-                        performAttackCoroutine = PerformAttack();
-                        StartCoroutine(performAttackCoroutine);
+                        // have a small chance to block when in range, or attack
+                        if (Random.value < blockChance/3 && enemytype == EnemyType.ANGER)
+                        {
+                            // Perform Block
+                            isAttacking = false;
+                            isBlocking = true;
+                            StopAttackCoroutine(); // Stop the attack coroutine if it's running
+                            performBlockCoroutine = PerformBlock();
+                            StartCoroutine(performBlockCoroutine);
+                        }
+                        else
+                        {
+                            // Perform Attack
+                            isAttacking = true;
+                            isBlocking = false;
+                            StopBlockCoroutine(); // Stop the attack coroutine if it's running
+                            performAttackCoroutine = PerformAttack();
+                            StartCoroutine(performAttackCoroutine);
+                        }
+                        
                     }
                 }
                 // Flip the renderer if the player is moving
-                if (player.position.x > this.transform.position.x ) { actorRenderer.flipX = false; } else if (player.position.x < this.transform.position.x ) { actorRenderer.flipX = true; }
-            
+                if(!isAttacking && !isBlocking)
+                {
+                    if (player.position.x > this.transform.position.x ) 
+                    { actorRenderer.flipX = false; } 
+                    else 
+                    if (player.position.x < this.transform.position.x ) 
+                    { actorRenderer.flipX = true; }
+                }
+
                 WrapAroundScreen();
             }
         }
@@ -114,10 +149,11 @@ public class EnemyController : MonoBehaviour
         if (collision.CompareTag("PlayerAttack") && playerController != null && playerController.isAttacking)
         {
             // Perform block chance check
-            if (!isAttacking && Random.value < blockChance)
+            if (!isAttacking && Random.value < blockChance && enemytype == EnemyType.ANGER)
             {
                 if (!isBlocking)
                 {
+                    applyKnockback = true;
                     isBlocking = true;
                     // Debug.LogWarning("Blocked Player Attack!");
                     StopAttackCoroutine(); // Stop the attack coroutine if it's running
@@ -127,6 +163,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
             else
+            if(!isBlocking)
             {
                 // Debug.LogWarning("Enemy is Dead!");
                 // Destroy the enemy and instantiate a corpse object
@@ -150,9 +187,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-
-
     private IEnumerator PerformAttack()
     {
         if (isAttacking) {
@@ -160,31 +194,42 @@ public class EnemyController : MonoBehaviour
             // Calculate the attackMoveDirection based on the stored attackAngle
             Vector2 attackMoveDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
 
-            switch(animCombo)
+            if (enemytype == EnemyType.ANGER)
             {
-                case 0:
-                    actorSpriteRenderer.run.StopAnimating();
-                    actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne; 
-                    actorSpriteRenderer.attack.AnimateOnce();
-                    actorSpriteRenderer.attack.enabled = isAttacking;
-                    animCombo++;
-                    if (animCombo > 1){ animCombo = 0; }
-                break;
-                case 1:
-                    actorSpriteRenderer.run.StopAnimating();
-                    actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackTwo; 
-                    actorSpriteRenderer.attack.AnimateOnce();
-                    actorSpriteRenderer.attack.enabled = isAttacking;
-                    animCombo++;
-                    if (animCombo > 1){ animCombo = 0; }
-                break;
+                switch(animCombo)
+                {
+                    case 0:
+                        actorSpriteRenderer.run.StopAnimating();
+                        actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne; 
+                        actorSpriteRenderer.attack.AnimateOnce();
+                        actorSpriteRenderer.attack.enabled = isAttacking;
+                        animCombo++;
+                        if (animCombo > 1){ animCombo = 0; }
+                    break;
+                    case 1:
+                        actorSpriteRenderer.run.StopAnimating();
+                        actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackTwo; 
+                        actorSpriteRenderer.attack.AnimateOnce();
+                        actorSpriteRenderer.attack.enabled = isAttacking;
+                        animCombo++;
+                        if (animCombo > 1){ animCombo = 0; }
+                    break;
+                }
+            }
+            else
+            {
+
+                if ( actorSpriteRenderer.attack.frame != 0) { actorSpriteRenderer.attack.frame = 0; }
+                actorSpriteRenderer.run.StopAnimating();
+                actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne; 
+                actorSpriteRenderer.attack.AnimateOnce();
+                actorSpriteRenderer.attack.enabled = isAttacking;
             }
 
-
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.3f);
             
             // create an attack indicator prior to activating the collision
-            if (isAttacking && actorSpriteRenderer.attack.frame >= actorSpriteRenderer.attack.currentSpriteSet.Length-6)
+            if (isAttacking && actorSpriteRenderer.attack.frame >= actorSpriteRenderer.attack.currentSpriteSet.Length-4)
             {
                 Vector2 indicatorSpawnPos = new Vector2(transform.position.x, transform.position.y + 0.25f);
                 var i = Instantiate(attackIndicator, indicatorSpawnPos, Quaternion.identity);
@@ -197,6 +242,7 @@ public class EnemyController : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
 
+            // apply squash
             if (isAttacking)
             {
                 rb.velocity = Vector2.zero;
@@ -208,25 +254,41 @@ public class EnemyController : MonoBehaviour
             if (actorSpriteRenderer.attack.frame >= actorSpriteRenderer.attack.currentSpriteSet.Length-4)
             {
                 // Debug.Log("Trigger On!");
-                collisionBox.SetActive(true);
+                collisionBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
+                collisionBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
             }
 
             yield return new WaitForSeconds(0.15f);
 
+            // end squash
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
+
             attackSquash = false;
-            collisionBox.SetActive(false);
             
-            yield return new WaitForSeconds(0.5f);
+            // turnn off collider
+            collisionBox.GetComponentInChildren<ActorSpriteRenderer>().run.StopAnimating();  
+
+            if (collisionBox.GetComponentInChildren<ActorSpriteRenderer>().run.isAnimating != true)
+            {
+                collisionBox.GetComponentInChildren<ActorSpriteRenderer>().run.enabled = false;
+                collisionBox.GetComponentInChildren<ActorSpriteRenderer>().run.frame = 0;
+                collisionBox.GetComponentInChildren<SpriteRenderer>().enabled = false;
+                collisionBox.GetComponentInChildren<BoxCollider2D>().enabled = false;
+                collisionBox.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            }
+
+            yield return null;
             
             rb.velocity = Vector2.zero;
+
+            yield return new WaitForSeconds(0.5f);
+            
             actorSpriteRenderer.attack.StopAnimating();
 
             if (actorSpriteRenderer.attack.isAnimating == false)
             {
                 //Debug.Log("No longer Attacking!");
                 actorSpriteRenderer.attack.frame = 0;
-
                 isAttacking = false;
                 actorSpriteRenderer.attack.enabled = isAttacking;
             }
@@ -234,6 +296,7 @@ public class EnemyController : MonoBehaviour
             {
                 // Debug.Log(actorSpriteRenderer.attack.isAnimating);
             }
+
         }
         else
         {
@@ -244,40 +307,57 @@ public class EnemyController : MonoBehaviour
     }
     private IEnumerator PerformBlock()
     {
-        //Debug.Log("Is Blocking!");
-        actorSpriteRenderer.run.StopAnimating();
-        actorSpriteRenderer.attack.StopAnimating();
-        actorSpriteRenderer.parry.currentSpriteSet = actorSpriteRenderer.parry.spriteSetParry; 
-        actorSpriteRenderer.parry.AnimateOnce();
-        actorSpriteRenderer.parry.enabled = isBlocking;
-
-        Vector2 knockbackMoveDirection = (transform.position - player.position).normalized;
-        ApplyKnockback(knockbackMoveDirection, knockbackForce);
-
-        yield return new WaitForSeconds(0.3f);
-
-        if(isKnockedBack)
+        if (enemytype != EnemyType.ANGER)
         {
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
+            isBlocking = false;
+            applyKnockback = false;
+            yield break;
         }
 
-        yield return new WaitForSeconds(0.2f);
-
-        if(isKnockedBack){ isKnockedBack = false; }
-        actorSpriteRenderer.parry.StopAnimating();
-
-        if (actorSpriteRenderer.parry.isAnimating == false)
+        if (isBlocking)
         {
-            //Debug.Log("No longer Blocking!");
-            actorSpriteRenderer.parry.frame = 0;
-            // actorSpriteRenderer.attack.StopAnimating();
-
-            isBlocking = false;
+            //Debug.Log("Is Blocking!");
+            actorSpriteRenderer.run.StopAnimating();
+            actorSpriteRenderer.attack.StopAnimating();
+            actorSpriteRenderer.parry.currentSpriteSet = actorSpriteRenderer.parry.spriteSetParry; 
+            actorSpriteRenderer.parry.AnimateOnce();
             actorSpriteRenderer.parry.enabled = isBlocking;
+
+            if(applyKnockback == true)
+            {
+            Vector2 knockbackMoveDirection = (transform.position - player.position).normalized;
+            ApplyKnockback(knockbackMoveDirection, knockbackForce);
+            }
+
+            yield return new WaitForSeconds(0.3f);
+
+            if(isKnockedBack)
+            {
+                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
+            }
+
+            yield return new WaitForSeconds(0.2f);
+
+            if(isKnockedBack && applyKnockback){ isKnockedBack = false; applyKnockback = false; }
+            actorSpriteRenderer.parry.StopAnimating();
+
+            if (actorSpriteRenderer.parry.isAnimating == false)
+            {
+                //Debug.Log("No longer Blocking!");
+                actorSpriteRenderer.parry.frame = 0;
+                // actorSpriteRenderer.attack.StopAnimating();
+
+                isBlocking = false;
+                actorSpriteRenderer.parry.enabled = isBlocking;
+            }
+            else
+            {
+                // Debug.Log(actorSpriteRenderer.parry.isAnimating);
+            }
         }
         else
         {
-            // Debug.Log(actorSpriteRenderer.parry.isAnimating);
+            yield break;
         }
 
     }   
@@ -307,7 +387,6 @@ public class EnemyController : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
     }
-
 
     private Rect GetScreenBounds()
     {
@@ -341,6 +420,5 @@ public class EnemyController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, screenBounds.yMax, transform.position.z);
         }
     }
-
 
 }

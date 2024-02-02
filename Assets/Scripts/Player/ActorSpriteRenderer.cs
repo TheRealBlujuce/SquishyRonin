@@ -13,9 +13,10 @@ public class ActorSpriteRenderer : MonoBehaviour
     [SerializeField] private float targetXScale;
     [SerializeField] private float targetYScale;
 
-    [Header("Use Squash/Stretch, Is Corpse?, Scale Speed, and Attack Combo")]
+    [Header("Use Squash/Stretch, Is Corpse or Effect?,\n Scale Speed, and Attack Combo")]
     public bool usesSquash = false;
     public bool isCorpse = false;
+    public bool isEffect = false;
     public float scaleSpeed = 0.5f;
     public int attackCombo = 0;
     public Color corpseColor;
@@ -90,24 +91,38 @@ public class ActorSpriteRenderer : MonoBehaviour
 
     private void UpdateSpriteSet()
     {
-    
-        if (actorMovement != null)
+        
+        switch(isEffect)
         {
-            if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
-            { 
-                attack.StopAnimating();
-                run.currentSpriteSet = run.spriteSetRun; 
-                if (run.isAnimating != true)
+            case true:
+                if (actorMovement != null && actorRenderer.enabled == true && run.isAnimating != true)
                 {
+                    run.currentSpriteSet = run.spriteSetRun; 
                     run.AnimateLoop();
-                    run.enabled = actorMovement.isMoving;
+                    run.enabled = true;
                 }
-            }
-            else
-            if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
-            { actorRenderer.sprite = idle; run.StopAnimating(); run.enabled = actorMovement.isMoving; }
+            break;
+            case false:
+                if (actorMovement != null)
+                {
+                    if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
+                    { 
+                        attack.StopAnimating();
+                        run.currentSpriteSet = run.spriteSetRun; 
+                        if (run.isAnimating != true)
+                        {
+                            run.AnimateLoop();
+                            run.enabled = actorMovement.isMoving;
+                        }
+                    }
+                    else
+                    if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
+                    { actorRenderer.sprite = idle; run.StopAnimating(); run.enabled = actorMovement.isMoving; }
 
+                }
+            break;
         }
+
     }
 
     private void Update()

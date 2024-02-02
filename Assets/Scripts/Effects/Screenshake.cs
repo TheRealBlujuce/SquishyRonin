@@ -30,6 +30,6 @@ public class Screenshake : MonoBehaviour
     public void TriggerShake(float duration)
     {
         originalCameraPosition = transform.localPosition;
-        shakeDuration = duration;
+        shakeDuration = duration+0.5f;
     }
 }
