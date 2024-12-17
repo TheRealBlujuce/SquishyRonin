@@ -115,6 +115,7 @@ MonoBehaviour:
   squashXAttack: 0.5
   squashYAttack: 0.5
   idle: {fileID: -2131188925, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  altIdle: {fileID: -44485530, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   run: {fileID: 5083739386579482638}
   attack: {fileID: 3110171399653511298}
   animCombo: 0
@@ -132,11 +133,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun:
+  spriteSetRunOne:
   - {fileID: 589956, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: 563525074, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: -5434660, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: 1709613206, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  spriteSetRunTwo:
+  - {fileID: -109507320, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  - {fileID: -2040773060, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  - {fileID: -1027985760, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  - {fileID: 1712098096, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -160,7 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun: []
+  spriteSetRunOne: []
+  spriteSetRunTwo: []
   spriteSetAttackOne:
   - {fileID: 156281522, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: -1431693257, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
@@ -196,7 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun: []
+  spriteSetRunOne: []
+  spriteSetRunTwo: []
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry:
@@ -225,11 +233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun:
+  spriteSetRunOne:
   - {fileID: -313861361, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: 1860557010, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: 1076943776, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: -1733928351, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  spriteSetRunTwo: []
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -529,6 +538,7 @@ MonoBehaviour:
   squashXAttack: 0.5
   squashYAttack: 0.5
   idle: {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  altIdle: {fileID: 0}
   run: {fileID: 5772093563121320757}
   attack: {fileID: 0}
   animCombo: 0
@@ -546,12 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun:
-  - {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -1625091433, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -1801901738, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  spriteSetRunOne: []
+  spriteSetRunTwo: []
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -665,6 +671,7 @@ GameObject:
   - component: {fileID: 7402719270039841814}
   - component: {fileID: 7402719270039841812}
   - component: {fileID: 7402719270039841807}
+  - component: {fileID: 4906574618155175788}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -719,6 +726,7 @@ MonoBehaviour:
   runningSpeedMultiplier: 1.5
   attackMovementSpeedMultiplier: 1.75
   knockbackForce: 6
+  thrownWep: {fileID: 3400210087791651273, guid: 5920ee1d984bf784aae02357ac9483c2, type: 3}
   player: {fileID: 0}
   movementInput: {x: 0, y: 0}
   previousMovementInput: {x: 0, y: 0}
@@ -729,7 +737,9 @@ MonoBehaviour:
   isInteracting: 0
   isBlocking: 0
   isRolling: 0
+  hasThrown: 0
   canBeHit: 1
+  hasSword: 1
   attackSquash: 0
   animCombo: 0
   isBlockParryTiming: 0
@@ -796,6 +806,51 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.35}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.75}
+  m_EdgeRadius: 0
+--- !u!61 &4906574618155175788
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7402719270039841817}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.35}

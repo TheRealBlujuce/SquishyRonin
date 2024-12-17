@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""f27dd54f-aec6-4d9a-ab8b-87c83a61a0b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +247,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d71f13ac-79be-4afd-a1bf-f91441acbfb8"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e0a034f-c193-4ecd-baf1-944196f45b82"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -441,6 +472,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerMovement_Run = m_PlayerMovement.FindAction("Run", throwIfNotFound: true);
         m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
         m_PlayerMovement_Block = m_PlayerMovement.FindAction("Block", throwIfNotFound: true);
+        m_PlayerMovement_Throw = m_PlayerMovement.FindAction("Throw", throwIfNotFound: true);
         // MenuMovement
         m_MenuMovement = asset.FindActionMap("MenuMovement", throwIfNotFound: true);
         m_MenuMovement_Horizontal = m_MenuMovement.FindAction("Horizontal", throwIfNotFound: true);
@@ -509,6 +541,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_Run;
     private readonly InputAction m_PlayerMovement_Attack;
     private readonly InputAction m_PlayerMovement_Block;
+    private readonly InputAction m_PlayerMovement_Throw;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -517,6 +550,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_PlayerMovement_Run;
         public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
         public InputAction @Block => m_Wrapper.m_PlayerMovement_Block;
+        public InputAction @Throw => m_Wrapper.m_PlayerMovement_Throw;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -538,6 +572,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Block.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBlock;
                 @Block.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBlock;
                 @Block.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBlock;
+                @Throw.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
+                @Throw.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
+                @Throw.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -554,6 +591,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Block.started += instance.OnBlock;
                 @Block.performed += instance.OnBlock;
                 @Block.canceled += instance.OnBlock;
+                @Throw.started += instance.OnThrow;
+                @Throw.performed += instance.OnThrow;
+                @Throw.canceled += instance.OnThrow;
             }
         }
     }
@@ -613,6 +653,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
     }
     public interface IMenuMovementActions
     {

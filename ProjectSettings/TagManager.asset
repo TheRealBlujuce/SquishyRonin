@@ -8,6 +8,10 @@ TagManager:
   - EnemyAttack
   - Collision
   - Torii
+  - Katanna
+  - Enemy
+  - ToriiTrigger
+  - EnemySpell
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - UI
   - Enemy
   - Triggers
-  - 
+  - Foreground
   - 
   - 
   - 

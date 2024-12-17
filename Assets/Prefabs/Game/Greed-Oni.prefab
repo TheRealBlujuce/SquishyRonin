@@ -202,6 +202,7 @@ MonoBehaviour:
   squashXAttack: 0.5
   squashYAttack: 0.5
   idle: {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  altIdle: {fileID: 0}
   run: {fileID: 3524444012209090169}
   attack: {fileID: 0}
   animCombo: 0
@@ -219,12 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun:
-  - {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -847316566, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -1625091433, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: -1801901738, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  spriteSetRunOne: []
+  spriteSetRunTwo: []
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -253,9 +250,10 @@ GameObject:
   - component: {fileID: 4180346425558085579}
   - component: {fileID: 4180346425558085584}
   - component: {fileID: 4180346425558085576}
+  - component: {fileID: 4719122760440617379}
   m_Layer: 6
-  m_Name: Regret-Oni
-  m_TagString: Untagged
+  m_Name: Greed-Oni
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemytype: 1
+  enemyAiType: {fileID: 4719122760440617379}
   movementSpeed: 4
   attackRange: 3.5
   blockChance: 0.8
@@ -378,6 +377,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
+--- !u!114 &4719122760440617379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4180346425558085585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcca3845b22454043a7a49c6edc4c17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5146418260372526503
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +586,7 @@ MonoBehaviour:
   squashXAttack: 0.5
   squashYAttack: 0.5
   idle: {fileID: 1166090682, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  altIdle: {fileID: 0}
   run: {fileID: 3688337123944748782}
   attack: {fileID: 6043172471453472848}
   animCombo: 0
@@ -592,11 +604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun:
+  spriteSetRunOne:
   - {fileID: 1166090682, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   - {fileID: 894095994, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   - {fileID: -289771362, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   - {fileID: 398551878, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  spriteSetRunTwo: []
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -620,7 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun: []
+  spriteSetRunOne: []
+  spriteSetRunTwo: []
   spriteSetAttackOne:
   - {fileID: 74048845, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   - {fileID: 74048845, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
@@ -633,11 +647,14 @@ MonoBehaviour:
   spriteSetAttackTwo: []
   spriteSetParry: []
   currentSpriteSet:
-  - {fileID: -2021314944, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: 1020011677, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: 1879225437, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 74048845, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 74048845, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 74048845, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: -1107333788, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: -1107333788, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: -1107333788, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   - {fileID: 91072382, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
-  - {fileID: 91072382, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
+  - {fileID: 74048845, guid: 814bead8279f7f24d8d56b426994091e, type: 3}
   framerate: 0.1222227
   actorRenderer: {fileID: 3762897857429354816}
   frame: 0

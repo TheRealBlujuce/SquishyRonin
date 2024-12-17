@@ -29,6 +29,7 @@ public class ActorSpriteRenderer : MonoBehaviour
 
     [Header("Sprite Set ")]
     public Sprite idle;
+    public Sprite altIdle;
     // public Sprite jump;
     // public Sprite slide;
     // public Sprite slideDash;
@@ -97,7 +98,7 @@ public class ActorSpriteRenderer : MonoBehaviour
             case true:
                 if (actorMovement != null && actorRenderer.enabled == true && run.isAnimating != true)
                 {
-                    run.currentSpriteSet = run.spriteSetRun; 
+                    run.currentSpriteSet = run.spriteSetRunOne;
                     run.AnimateLoop();
                     run.enabled = true;
                 }
@@ -105,10 +106,13 @@ public class ActorSpriteRenderer : MonoBehaviour
             case false:
                 if (actorMovement != null)
                 {
-                    if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
+                    if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling && !actorMovement.hasThrown)
                     { 
                         attack.StopAnimating();
-                        run.currentSpriteSet = run.spriteSetRun; 
+                        if (actorMovement.hasSword){ run.currentSpriteSet = run.spriteSetRunOne; }
+                        else
+                        if (!actorMovement.hasSword){ run.currentSpriteSet = run.spriteSetRunTwo; }
+
                         if (run.isAnimating != true)
                         {
                             run.AnimateLoop();
@@ -117,7 +121,12 @@ public class ActorSpriteRenderer : MonoBehaviour
                     }
                     else
                     if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
-                    { actorRenderer.sprite = idle; run.StopAnimating(); run.enabled = actorMovement.isMoving; }
+                    { 
+                        if (actorMovement.hasSword){ actorRenderer.sprite = idle; }
+                        else
+                        if (!actorMovement.hasSword){ actorRenderer.sprite = altIdle; }
+                        run.StopAnimating(); run.enabled = actorMovement.isMoving; 
+                     }
 
                 }
             break;
@@ -133,9 +142,11 @@ public class ActorSpriteRenderer : MonoBehaviour
         {
             Vector3 baseScale = new Vector3(currentXScale, currentYScale, 1f);
             Vector3 targetScale = new Vector3(targetXScale, targetYScale, 1f);
+
+            // player actor
             if (actorMovement != null)
             {
-                if ((actorMovement.isAttacking || actorMovement.isRolling) && actorMovement.attackSquash)
+                if ((actorMovement.isAttacking || actorMovement.isRolling || actorMovement.hasThrown) && actorMovement.attackSquash)
                 {
                     actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, targetScale, scaleSpeed * Time.deltaTime); 
                 }
@@ -144,6 +155,7 @@ public class ActorSpriteRenderer : MonoBehaviour
                     actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, baseScale, scaleSpeed * Time.deltaTime); 
                 }
             }
+            // enemy actor
             if (enemyActorMovement != null)
             {
                 if (enemyActorMovement.isAttacking && enemyActorMovement.attackSquash)
@@ -164,7 +176,7 @@ public class ActorSpriteRenderer : MonoBehaviour
             if (!run.corpseAnimEnd)
             {
                 actorRenderer.color = Color.Lerp(actorRenderer.color, corpseColor, 0.01f);
-                run.currentSpriteSet = run.spriteSetRun; run.AnimateCorpse();
+                run.currentSpriteSet = run.spriteSetRunOne; run.AnimateCorpse();
             }
             else
             {
@@ -174,10 +186,5 @@ public class ActorSpriteRenderer : MonoBehaviour
         }
     }
 
-    IEnumerator Squash()
-    {
-        
-        // used for squash and stretch.
-        yield break;
-    }
+
 }

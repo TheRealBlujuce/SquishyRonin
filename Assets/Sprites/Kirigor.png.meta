@@ -631,6 +631,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Kirigor-NoSword-1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb847bb446e45a49b992c61f2eeacb8
+      internalID: -109507320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirigor-NoSword-2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6965af6f290e178468d11dcce67e2797
+      internalID: -2040773060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirigor-NoSword-3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d851846e25b804b9aa35c5c428711e
+      internalID: -1027985760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirigor-NoSword-4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9e2de037440714382d1c721a618bd2
+      internalID: 1712098096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kirigor_Idle-NoSword
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 240
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2c35a96eef9d3d4db0db1f4dcfec6f3
+      internalID: -44485530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -651,18 +756,23 @@ TextureImporter:
       Kirigor_AttackA-1: -1431693257
       Kirigor_Parry-4: 1656063405
       Kirigor_AttackB-3: 1908793083
+      Kirigor-NoSword-3: -1027985760
       Kirigor_Parry-3: -324237023
       Kirigor_Roll-3: 1076943776
+      Kirigor_Idle-NoSword: -44485530
       Kirigor_AttackB-2: 350101194
       Kirigor_AttackB-1: 1998604611
       Kirigor_Dead-2: 2080688218
       Kirigor_Dead-3: -1653127714
+      Kirigor-NoSword-4: 1712098096
       Kirigor_Roll-2: 1860557010
       Kirigor_Roll-1: -313861361
       Kirigor_Run-1: 563525074
+      Kirigor-NoSword-2: -2040773060
       Kirigor_Parry-1: 431490936
       Kirigor_AttackA-2: -1431693257
       Kirigor_Dead-4: 627409527
+      Kirigor-NoSword-1: -109507320
       Kirigor_AttackA-4: 763418230
       Kirigor_Run-2: -5434660
       Kirigor_AttackA-3: -416300905

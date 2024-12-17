@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 54a79d897fd68c6419e59af100ff611c
+  - enabled: 0
     path: Assets/Scenes/World_Map.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Maple_Grove.unity
+    guid: 96c6c83c6ad4fa648a52701b1bf01722
+  - enabled: 1
+    path: Assets/Scenes/Birch_Grove.unity
+    guid: a235ff68760561d48abba540c501ab28
+  - enabled: 1
+    path: Assets/Scenes/Sakura_Grove.unity
+    guid: 3c816211c82bdb14cad2d46452999c4a
   m_configObjects: {}

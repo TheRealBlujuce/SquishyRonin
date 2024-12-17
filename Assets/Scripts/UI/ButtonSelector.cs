@@ -49,12 +49,12 @@ public class ButtonSelector : MonoBehaviour
         if (GameController.gameControllerInstance.currentGameState == GameController.GameState.GAMEOVER)
         {
             // Handle button selection with arrow keys only if there is no selected button
-            if (currentGameInput.MenuMovement.Horizontal.ReadValue<Vector2>().x < 0 && canSelect)
+            if (currentGameInput.MenuMovement.Horizontal.ReadValue<Vector2>().x < 0 && canSelect && selectedButtonIndex != 0)
             {
                 canSelect = false;
                 SelectButton(selectedButtonIndex - 1);
             }
-            else if (currentGameInput.MenuMovement.Horizontal.ReadValue<Vector2>().x > 0 && canSelect)
+            else if (currentGameInput.MenuMovement.Horizontal.ReadValue<Vector2>().x > 0 && canSelect && selectedButtonIndex != 1)
             {
                 canSelect = false;
                 SelectButton(selectedButtonIndex + 1);
@@ -91,18 +91,20 @@ public class ButtonSelector : MonoBehaviour
     {
         Image bgImage = buttonBgImages[index];
         float targetFillAmount = isSelected ? 1.0f : 0.0f;
+        Vector3 targetScale = isSelected ? new Vector3(1.15f, 1.15f, 1.15f) : new Vector3(1f, 1f, 1f);
 
         // Stop any ongoing fill coroutine for this button
         if (isFilling[index])
         {
-            StopCoroutine(LerpFillAmount(index, 1));
+            StopCoroutine(LerpFillAmount(index, 1f, new Vector3(1.15f, 1.15f, 1.15f)));
         }
 
         // Start a new fill coroutine
-        StartCoroutine(LerpFillAmount(index, targetFillAmount));
+        StartCoroutine(LerpFillAmount(index, targetFillAmount, targetScale));
+
     }
 
-    private IEnumerator LerpFillAmount(int index, float targetFillAmount)
+    private IEnumerator LerpFillAmount(int index, float targetFillAmount, Vector3 targetScale)
     {
         isFilling[index] = true;
         float startFillAmount = buttonBgImages[index].fillAmount;
@@ -113,6 +115,7 @@ public class ButtonSelector : MonoBehaviour
             timeElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(timeElapsed / fillSpeed);
             buttonBgImages[index].fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, t);
+            buttons[index].transform.localScale = Vector3.Lerp(buttons[index].transform.localScale, targetScale, t * 0.2f);
             yield return null;
         }
 
@@ -120,8 +123,6 @@ public class ButtonSelector : MonoBehaviour
         isFilling[index] = false;
         canSelect = true;
 
-
-        
     }
 
     private void InteractWithSelectedButton()

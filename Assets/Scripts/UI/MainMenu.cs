@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     private int selectedButtonIndex = 0;
     private bool canSelect;
 
+    [SerializeField] private GameObject controlsMenu;
+
     private void Start()
     {
         buttonBgImages = new Image[menuButtons.Length];
@@ -34,22 +36,21 @@ public class MainMenu : MonoBehaviour
         SelectButton(selectedButtonIndex);
     }
 
-    private void Awake()
-    {
-        currentGameInput = GameController.gameControllerInstance.gameInput;
-    }
 
 
     private void Update()
     {
+
+        if (currentGameInput == null) {currentGameInput = GameController.gameControllerInstance.gameInput;}
+
         if (GameController.gameControllerInstance.currentGameState == GameController.GameState.MENU)
         {
-            if (currentGameInput.MenuMovement.Vertical.ReadValue<Vector2>().y > 0 && canSelect)
+            if (currentGameInput.MenuMovement.Vertical.ReadValue<Vector2>().y > 0 && canSelect && selectedButtonIndex != 0)
             {
                 canSelect = false;
                 SelectButton(selectedButtonIndex - 1);
             }
-            else if (currentGameInput.MenuMovement.Vertical.ReadValue<Vector2>().y < 0 && canSelect)
+            else if (currentGameInput.MenuMovement.Vertical.ReadValue<Vector2>().y < 0 && canSelect && selectedButtonIndex != 3)
             {
                 canSelect = false;
                 SelectButton(selectedButtonIndex + 1);
@@ -62,6 +63,7 @@ public class MainMenu : MonoBehaviour
             }
 
             selectedButtonIndex = Mathf.Clamp(selectedButtonIndex, 0, menuButtons.Length-1);
+
         }
     }
 
@@ -86,18 +88,21 @@ public class MainMenu : MonoBehaviour
     {
         Image bgImage = buttonBgImages[index];
         float targetFillAmount = isSelected ? 1.0f : 0.0f;
+        Vector3 targetScale = isSelected ? new Vector3(1.15f, 1.15f, 1.15f) : new Vector3(1f, 1f, 1f);
 
         // Stop any ongoing fill coroutine for this button
         if (isFilling[index])
         {
-            StopCoroutine(LerpFillAmount(index,1));
+            StopCoroutine(LerpFillAmount(index, 1f, new Vector3(1.15f, 1.15f, 1.15f)));
         }
 
         // Start a new fill coroutine
-        StartCoroutine(LerpFillAmount(index, targetFillAmount));
+        StartCoroutine(LerpFillAmount(index, targetFillAmount, targetScale));
+
+        if(selectedButtonIndex == 2) { controlsMenu.SetActive(true); } else { controlsMenu.SetActive(false); }
     }
 
-    private IEnumerator LerpFillAmount(int index, float targetFillAmount)
+    private IEnumerator LerpFillAmount(int index, float targetFillAmount, Vector3 targetScale)
     {
         isFilling[index] = true;
         float startFillAmount = buttonBgImages[index].fillAmount;
@@ -108,6 +113,7 @@ public class MainMenu : MonoBehaviour
             timeElapsed += Time.deltaTime;
             float t = Mathf.Clamp01(timeElapsed / fillSpeed);
             buttonBgImages[index].fillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, t);
+            menuButtons[index].transform.localScale = Vector3.Lerp(menuButtons[index].transform.localScale, targetScale, t * 0.2f);
             yield return null;
         }
 
@@ -122,22 +128,33 @@ public class MainMenu : MonoBehaviour
         if (selectedButtonIndex >= 0 && selectedButtonIndex < menuButtons.Length)
         {
             // TODO: Handle button interaction here, for example:
-            Debug.Log("Button " + selectedButtonIndex + " clicked!");
+            // Debug.Log("Button " + selectedButtonIndex + " clicked!");
             if (selectedButtonIndex == 0)
             {
                 GameController.gameControllerInstance.PlayGame();
             }
             if (selectedButtonIndex == 1)
             {
-                if (localization.currentLanguage == GameLocalization.Language.English)
+                // switch game localization
+                switch(GameController.gameControllerInstance.currentLocalization)
                 {
-                    localization.SetLanguage(GameLocalization.Language.Japanese);
+                    case 0:
+                        GameController.gameControllerInstance.currentLocalization = 1;
+                        localization.SetLanguage(GameLocalization.Language.Japanese);
+                        break;
+                    case 1:
+                        GameController.gameControllerInstance.currentLocalization = 2;
+                        localization.SetLanguage(GameLocalization.Language.Spanish);
+                        break;
+                    case 2:
+                        GameController.gameControllerInstance.currentLocalization = 0;
+                        localization.SetLanguage(GameLocalization.Language.English);
+                        break;
                 }
-                else
-                if (localization.currentLanguage == GameLocalization.Language.Japanese)
-                {
-                    localization.SetLanguage(GameLocalization.Language.English);
-                }
+            }
+            if(selectedButtonIndex == 3)
+            {
+                Application.Quit();
             }
         }
     }

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class AnimatedSprite : MonoBehaviour
 {
-    public Sprite[] spriteSetRun;
+    public Sprite[] spriteSetRunOne;
+    public Sprite[] spriteSetRunTwo;
     public Sprite[] spriteSetAttackOne;
     public Sprite[] spriteSetAttackTwo;
     public Sprite[] spriteSetParry;
@@ -132,14 +133,22 @@ public class AnimatedSprite : MonoBehaviour
             
             yield return new WaitForSeconds(framerate);
 
-            if (actorPlayer != null)
-            {
-                if (actorPlayer.isDead == true){ yield break;}
-            }
+            // if (actorPlayer != null)
+            // {
+            //     if (actorPlayer.isDead == true){ yield break;}
+            // }
             
             if (frame < currentSpriteSet.Length-1){ animateCorpseFramesCoroutine = StartCoroutine(AnimateCorpseFrames()); }
             else
-            if (frame >= currentSpriteSet.Length-1){ isAnimating = false; corpseAnimEnd = true; yield break; }
+            if (frame >= currentSpriteSet.Length-1){ isAnimating = false; corpseAnimEnd = true; 
+            
+                if (gameObject.name == "Doubt-Oni-Corpse")
+                {
+                    Destroy(this.gameObject);
+                } 
+                yield break; 
+            }
         }
+        
     }
 }

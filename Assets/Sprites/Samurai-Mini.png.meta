@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_2
+      name: Doubt-Walk-1
       rect:
         serializedVersion: 2
         x: 80
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_3
+      name: Doubt-Walk-2
       rect:
         serializedVersion: 2
         x: 96
@@ -317,7 +317,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_11
+      name: Doubt-Attack-1
       rect:
         serializedVersion: 2
         x: 80
@@ -338,7 +338,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_12
+      name: Doubt-Attack-2
       rect:
         serializedVersion: 2
         x: 96
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_13
+      name: Doubt-Attack-3
       rect:
         serializedVersion: 2
         x: 112
@@ -380,7 +380,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_14
+      name: Doubt-Attack-4
       rect:
         serializedVersion: 2
         x: 128
@@ -569,7 +569,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_23
+      name: Doubt-Dead-1
       rect:
         serializedVersion: 2
         x: 80
@@ -590,7 +590,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_24
+      name: Doubt-Dead-2
       rect:
         serializedVersion: 2
         x: 96
@@ -611,7 +611,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_25
+      name: Doubt-Dead-3
       rect:
         serializedVersion: 2
         x: 112
@@ -632,7 +632,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_26
+      name: Doubt-Dead-4
       rect:
         serializedVersion: 2
         x: 128
@@ -821,7 +821,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_35
+      name: Doubt-Spell-1
       rect:
         serializedVersion: 2
         x: 80
@@ -842,7 +842,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_36
+      name: Doubt-Spell-2
       rect:
         serializedVersion: 2
         x: 96
@@ -863,7 +863,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_37
+      name: Doubt-Spell-3
       rect:
         serializedVersion: 2
         x: 112
@@ -884,7 +884,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_38
+      name: Doubt-Spell-4
       rect:
         serializedVersion: 2
         x: 128
@@ -1073,90 +1073,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_47
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 176
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a27c31212985c6a4ab819f152b90a578
-      internalID: -1352099984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Samurai-Mini_48
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 176
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6647767df2078d049a56f471f9488839
-      internalID: 1089997131
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Samurai-Mini_49
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 176
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76c7d92836201b943b0b9662a70c3cf0
-      internalID: -1621152971
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Samurai-Mini_50
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 176
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2f7d90dc22c8de4db047efac816668b
-      internalID: -1387401890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Oni-Block-1
       rect:
         serializedVersion: 2
@@ -1325,74 +1241,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai-Mini_59
+      name: Lust-Idle
       rect:
         serializedVersion: 2
         x: 80
-        y: 160
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ddf508fda1dcae47abac1974809b577
-      internalID: -2135438156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Samurai-Mini_60
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 160
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb821fdc33af6804eb6eb624b861557c
-      internalID: -1120094430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Samurai-Mini_61
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 160
-        width: 16
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a651094b15956e4428b240625dc406ed
-      internalID: 1247415236
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Samurai-Mini_62
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
+        y: 144
         width: 16
         height: 16
       alignment: 7
@@ -2321,7 +2174,7 @@ TextureImporter:
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 0, z: 6, w: 5}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -2678,7 +2531,7 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -3109,6 +2962,657 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Katanna
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6165f6a438912734b86e58bc90844b82
+      internalID: 305067331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Teleport-1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e1f2a26745f9546950cabac6694d2c
+      internalID: -88129526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Teleport-2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fda8b023c24914a48be28cc8aa94295d
+      internalID: 276304741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Teleport-3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b723936b818a212458d3081d1a5906b1
+      internalID: 1885963207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Teleport-4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb836e0008fea247b8fe2b59f52e454
+      internalID: -616397788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Attack-1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c802f8380ef260468fe5db10b912575
+      internalID: 527979110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Attack-2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c33651acb302d847a6d885be3e47fe7
+      internalID: 696218187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Attack-3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57683f4a9e1856f449ffd915078476f6
+      internalID: -82985396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Attack_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 112
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c742a020ff6decb45963966801bf5bac
+      internalID: -135138550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Dead-1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce199d47572e78c4ea4b1e9e16fd33da
+      internalID: 992920830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Dead-2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41693afab1608c1439d6b4b8901f680d
+      internalID: -1484533367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Dead-3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94069b23a20404948be176a1f1077186
+      internalID: -1362923472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lust-Dead-4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e233df01bfe87e4b964a42cc50e6fe6
+      internalID: -2024433475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LustSpell
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.55, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61bc2d58af9efe345bba94b51952b102
+      internalID: -1501390660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doubt-Walk-3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 240
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa3df0d38e97e364980ba863a39eff75
+      internalID: -2141121932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doubt-Walk-4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 366ac91284846e3488649f7a3b153b96
+      internalID: 1437540412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-LS
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70cff7ddb424c814381812cc65b447c8
+      internalID: -1733719455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Square
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62f202e6d1823174a939fd6d65998bab
+      internalID: 1188360255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Triangle
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0472489d09bf1eb4792ccdae8cdb9093
+      internalID: 2079115795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Circle
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31ec91e4c43c09458a424fe990f1dda
+      internalID: 1484135120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-X
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fee1a2b860fa9cc46bb0ca9b68577d25
+      internalID: 8586861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-RB
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67f940ec6d6c58a4887255861834b6ff
+      internalID: -1522272511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-RT
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443491206a74ab74499908f4ac25f54e
+      internalID: 687433708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Z-Key
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ede9be0b51142d4eb219c584871647b
+      internalID: 857724396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-X-Key
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f36e472631b7e458dcd058ad6d44dd
+      internalID: -1132960817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-C-Key
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcbf1d1bbfe19ea47ab53632ee87f570
+      internalID: 1806262877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-SpaceBar
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 176
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9fb3fcf253f86a4bbd21c4c5dcc1d2c
+      internalID: -272475990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Up-Arrow
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e1421db36eb31a469ff93b990b83279
+      internalID: -1596958317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Right-Arrow
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ecca21139678ce40ae7b35d011c12b1
+      internalID: 1757175064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Down-Arrow
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f62eda38fea74e468b2612486e6f7f8
+      internalID: 1610352138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls-Left-Arrow
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c77509c07ef40940b90b60ceb3be291
+      internalID: 2032021803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -3120,154 +3624,184 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Oni-Attack-B-1: 1023954662
-      FallingLeaf-Petal: 56975709
       Player-Run-2: 650888775
-      Samurai-Mini_48: 1089997131
+      Doubt-Walk-3: -2141121932
+      Controls-Left-Arrow: 2032021803
       Stone-4: -538873241
-      Samurai-Mini_59: -2135438156
       Tree-Leaves: -1018791918
-      Player-Attack-A-4: 767851901
-      Samurai-Mini_36: 1088097329
-      Samurai-Mini_3: 2001877721
+      Controls-X-Key: -1132960817
       Water-4: 1984268718
-      Regret-Walk-4: 398551878
-      Blood-Effect-3: -360394300
-      Dirt-1: -1399581653
       Oni-Dead-4: 518185218
       Regret-Dead-2: -24004235
-      Dirt-3: -964630856
-      Water-6: -1860717959
+      Controls-LS: -1733719455
       Samurai-Mini_47: -1352099984
       Tree-Trunk: 1981969329
       Ground-Leaves: 1715308003
       Player-Block-1: -1339081634
-      Player-Walk-3: -1985462293
-      Samurai-Mini_26: -1084859074
-      Water-2: -1871582439
       Oni-Block-1: 958577291
       Oni-Run-3: -1647973744
       Oni-Dead-2: 2126688146
-      Water-1: -568496279
       Dirt-8: 796111073
+      Doubt-Dead-3: 1943779138
+      Controls-Up-Arrow: -1596958317
+      Regret-Walk-1: 1166090682
+      Player-Attack-A-3: 18643915
+      Lust-Teleport-1: -88129526
+      Samurai-Mini_61: 1247415236
+      FKey: -243094026
+      Lust-Dead-4: -2024433475
+      Player-Dead-3: 662338822
+      Oni-Walk-4: 123143508
+      Stone-3: 1350763256
+      Dirt-5: 887986278
+      Doubt-Attack-4: 324615579
+      Torri-NoPortal: 2015437455
+      HitBox-1: -1657446375
+      Lust-Attack-2: 696218187
+      Water-5: 935193999
+      Regret-Attack-4: 1912598971
+      Controls-Down-Arrow: 1610352138
+      Player-Block-4: -407221889
+      Player-Block-2: 1383424954
+      Lust-Attack-3: -82985396
+      Controls-X: 8586861
+      Player-Dead-2: 994044599
+      Direction-Pointer: 195494587
+      Samurai-Mini_88: -264875766
+      Samurai-Mini_50: -1387401890
+      Player-Idle-Unsheathed: -1870048891
+      Player-Roll-1: 380449697
+      Player-Run-3: 1976847018
+      Dirt-7: 1583402884
+      Player-Roll-3: -985247738
+      Player-Walk-2: -419775623
+      Oni-Walk-3: -825150183
+      Controls-SpaceBar: -272475990
+      Stone-1: 891771330
+      Oni-Attack-B-2: 103942976
+      Controls-RT: 687433708
+      Blood-Effect-1: -1191799202
+      Samurai-Mini_60: -1120094430
+      Player-Walk-1: -378138272
+      Stone-8: 1834409424
+      Oni-Run-4: 439190137
+      Player-Dead-1: -669297264
+      Dirt-9: 1034948052
+      Player-Attack-B-1: -374386213
+      Regret-Attack-1: 74048845
+      Lust-Dead-3: -1362923472
+      Oni-Attack-B-3: 1597465175
+      Ground-Leaves-Sakura: -1632619012
+      Blood-Puddle: 1710192763
+      Stone-2: 136941463
+      Blood-Effect-2: 1356572863
+      XButton: -2002745718
+      Player-Block-3: -1727159413
+      Player-Dead-4: 208430372
+      Doubt-Spell-3: 1415299618
+      Lust-Teleport-2: 276304741
+      Player-Attack-B-4: 190033795
+      Oni-Walk-1: -1151396783
+      Lust-Idle: -635617666
+      Doubt-Spell-2: 1088097329
+      Regret-Dead-4: 1397942893
+      Oni-Dead-1: 1175858897
+      Oni-Attack-A-4: 91072382
+      Regret-Attack-2: -1107333788
+      Hitbox-fade-2: -1801901738
+      Doubt-Dead-4: -1084859074
+      Player-Idle-Sheathed: -1884349349
+      Player-Roll-4: -2134961550
+      Oni-Attack-B-1: 1023954662
+      FallingLeaf-Petal: 56975709
+      Regret-Walk-4: 398551878
+      Samurai-Mini_48: 1089997131
+      Lust-Teleport-3: 1885963207
+      Controls-Right-Arrow: 1757175064
+      Samurai-Mini_59: -2135438156
+      Player-Attack-A-4: 767851901
+      Doubt-Spell-4: -1908880686
+      Blood-Effect-3: -360394300
+      Dirt-1: -1399581653
+      Lust-Dead-2: -1484533367
+      Dirt-3: -964630856
+      Water-6: -1860717959
+      Player-Walk-3: -1985462293
+      Water-2: -1871582439
+      Lust-Teleport-4: -616397788
+      Water-1: -568496279
       Player-Attack-B-3: 1015600127
+      Lust-Attack-1: -183208456
       Dirt-6: -790661157
       Oni-Run-2: 880827077
       Oni-Attack-A-2: 1020011677
-      Regret-Walk-1: 1166090682
+      Controls-C-Key: 1806262877
       Samurai-Mini_77: -346894708
       Shadow: -1780077496
-      Player-Attack-A-3: 18643915
-      Samurai-Mini_61: 1247415236
-      FKey: -243094026
-      Samurai-Mini_25: 1943779138
       Oni-Block-4: -2026521796
       Stone-9: -682430943
       Oni-Dead-3: -273273677
       Water-7: -914584717
-      Samurai-Mini_35: 1721934259
+      Regret-Dead-3: -1547335908
       Player-Attack-A-1: 324209421
       Water-8: -1466818364
-      Player-Dead-3: 662338822
-      Samurai-Mini_38: -1908880686
-      Oni-Walk-4: 123143508
-      Stone-3: 1350763256
-      Samurai-Mini_2: -1438054125
-      Dirt-5: 887986278
-      Torri-NoPortal: 2015437455
+      Lust-Attack_4: -135138550
       Player-Run-1: -16110116
-      HitBox-1: -1657446375
       Player-Walk-4: 1412164896
-      Water-5: 935193999
-      Regret-Attack-4: 1912598971
+      Controls-Circle: 1484135120
       Stone-7: -1324764046
       Regret-Dead-1: 1633501474
-      Player-Block-4: -407221889
-      Samurai-Mini_12: 1823755147
-      Player-Block-2: 1383424954
+      Doubt-Walk-2: 2001877721
       Oni-Block-2: 1634468430
-      Regret-Dead-3: -1547335908
-      Player-Dead-2: 994044599
-      Direction-Pointer: 195494587
+      Lust-Dead-1: 992920830
       Stone-6: -446651513
-      Samurai-Mini_88: -264875766
-      Samurai-Mini_50: -1387401890
+      Katanna: 305067331
       Water-3: -1910488847
       Torii-Portal: -523383195
-      Samurai-Mini_23: 318709778
-      Player-Walk-2: -419775623
-      Stone-1: 891771330
-      Player-Run-3: 1976847018
-      Dirt-7: 1583402884
-      Ground-Leaves-Maple: -1914070260
-      Player-Roll-3: -985247738
       GrassBlades: 1852454783
-      Oni-Walk-3: -825150183
-      Oni-Attack-B-2: 103942976
+      Ground-Leaves-Maple: -1914070260
+      Doubt-Walk-4: 1437540412
+      Doubt-Dead-2: 1741213125
+      Doubt-Attack-2: 1823755147
+      Controls-RB: -1522272511
       Stone-5: -382276293
       Oni-Idle-Unsheathed: 1631178276
       Ground-Leaves-Birch: -645479025
-      Player-Idle-Unsheathed: -1870048891
-      Blood-Effect-1: -1191799202
       AttackIndicator: 1763320945
       Grass-GrassBlades: 1839868943
-      Samurai-Mini_60: -1120094430
-      Player-Walk-1: -378138272
+      Controls-Triangle: 2079115795
       Oni-Attack-A-3: 1879225437
-      Samurai-Mini_37: 1415299618
-      Oni-Run-4: 439190137
-      Samurai-Mini_24: 1741213125
-      Player-Dead-1: -669297264
-      Player-Roll-1: 380449697
-      Stone-8: 1834409424
-      Dirt-9: 1034948052
-      Player-Attack-B-1: -374386213
-      Regret-Attack-1: 74048845
+      Doubt-Attack-3: -912897218
+      Controls-Square: 1188360255
       Oni-Attack-B-4: 1172876362
       Trigger-Area: -478230790
       Water-9: -1538734904
-      Oni-Attack-B-3: 1597465175
+      Regret-Walk-2: 894095994
       Player-Attack-B-2: -1203708092
       Oni-Walk-2: -1641646642
-      Blood-Puddle: 1710192763
       Oni-Attack-A-1: -2021314944
-      Regret-Walk-2: 894095994
-      Ground-Leaves-Sakura: -1632619012
-      Stone-2: 136941463
+      Doubt-Walk-1: -1438054125
       Oni-Block-3: -1604077781
-      Blood-Effect-2: 1356572863
       Samurai-Mini_89: 82262994
-      Player-Block-3: -1727159413
-      Samurai-Mini_14: 324615579
-      XButton: -2002745718
-      Player-Dead-4: 208430372
       Player-Run-4: -1992124
-      Player-Attack-B-4: 190033795
       Dirt-2: 168678701
-      Oni-Walk-1: -1151396783
       Regret-Walk-3: -289771362
       ButtonBg: 475943364
+      Doubt-Attack-1: 1469263217
       Regret-Attack-3: 430842556
       Grass: -1000508839
       Hitbox: -847316566
-      Samurai-Mini_11: 1469263217
-      Samurai-Mini_6: -183208456
+      LustSpell: -1501390660
       Samurai-Mini_49: -1621152971
-      Regret-Dead-4: 1397942893
       Dirt-4: -1415577149
-      Oni-Dead-1: 1175858897
-      Oni-Attack-A-4: 91072382
-      Samurai-Mini_13: -912897218
-      Oni-Idle-Sheathed: 1977879173
       Player-Roll-2: -777749997
       Oni-Run-1: 1455865267
-      Hitbox-fade-2: -1801901738
+      Oni-Idle-Sheathed: 1977879173
       Hitbox-fade-1: -1625091433
+      Controls-Z-Key: 857724396
       Player-Attack-A-2: 1902311761
-      Player-Idle-Sheathed: -1884349349
-      Regret-Attack-2: -1107333788
-      Player-Roll-4: -2134961550
-      Samurai-Mini_62: -635617666
+      Doubt-Spell-1: 1721934259
+      Doubt-Dead-1: 318709778
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

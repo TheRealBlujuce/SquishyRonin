@@ -271,13 +271,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e356cdb2f17c3644a67eb8f1163182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetRun:
+  spriteSetRunOne:
   - {fileID: -120332940, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: -120332940, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
-  - {fileID: 2080688218, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: 2080688218, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: -1653127714, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
   - {fileID: 627409527, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  spriteSetRunTwo: []
   spriteSetAttackOne: []
   spriteSetAttackTwo: []
   spriteSetParry: []
@@ -310,10 +309,11 @@ MonoBehaviour:
   isEffect: 0
   scaleSpeed: 0.5
   attackCombo: 0
-  corpseColor: {r: 1, g: 1, b: 1, a: 0.88235295}
+  corpseColor: {r: 1, g: 1, b: 1, a: 1}
   squashXAttack: 0.5
   squashYAttack: 0.5
   idle: {fileID: 627409527, guid: 9ed53c131da6dac47b6ac54e7251c0ac, type: 3}
+  altIdle: {fileID: 0}
   run: {fileID: 5860845829112522358}
   attack: {fileID: 0}
   animCombo: 0

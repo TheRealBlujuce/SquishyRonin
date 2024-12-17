@@ -155,11 +155,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {   
-        float chooseEnemy = Random.value;
+        int chooseEnemy = Random.Range(0, enemyPrefabs.Count);
         Vector2 spawnPos = new Vector2(spawnPoint.position.x, spawnPoint.position.y - 1f);
-        if (chooseEnemy< 0.5) { Instantiate(enemyPrefabs[0], spawnPos, Quaternion.identity); }
-        else
-        if (chooseEnemy > 0.5) { Instantiate(enemyPrefabs[1], spawnPos, Quaternion.identity); }
+        Instantiate(enemyPrefabs[chooseEnemy], spawnPos, Quaternion.identity);
     }
 
     
