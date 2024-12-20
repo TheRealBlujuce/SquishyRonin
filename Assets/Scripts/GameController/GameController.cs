@@ -173,22 +173,22 @@ public class GameController : MonoBehaviour
         if (currentGameState == GameState.MENU)
         {
             gameInput.Disable();
-            var randomMap = Random.Range(0, 3);
+            // var randomMap = Random.Range(0, 3);
 
-            switch(randomMap)
-            {
-                case 0:
-                    SceneManager.LoadScene(mapleGrove);
-                break;
-                case 1:
-                    SceneManager.LoadScene(birchGrove);
-                break;
-                case 2:
-                    SceneManager.LoadScene(sakuraGrove);
-                break;
-            }
+            // switch(randomMap)
+            // {
+            //     case 0:
+            //         SceneManager.LoadScene(mapleGrove);
+            //     break;
+            //     case 1:
+            //         SceneManager.LoadScene(birchGrove);
+            //     break;
+            //     case 2:
+            //         SceneManager.LoadScene(sakuraGrove);
+            //     break;
+            // }
 
-            // SceneManager.LoadScene("World_Map");
+            SceneManager.LoadScene("World_Map");
             localization.SetLanguage(localization.currentLanguage);
             NewGame();
         }
