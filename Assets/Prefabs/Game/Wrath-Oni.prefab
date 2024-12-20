@@ -294,17 +294,30 @@ MonoBehaviour:
   blockChance: 0.8
   bounceForce: 5
   knockbackForce: 8
+  prideTeleportCooldown: 5
+  prideCooldownTimer: 0
   corpsePrefab: {fileID: 5860845829112522354, guid: ed19aa05a5a3541418b3ebcfd181a3d7, type: 3}
   attackIndicator: {fileID: 7542536858533297024, guid: 9ac7ef7d59c576e45b35c8c580393235, type: 3}
   actorRenderer: {fileID: 3762897857429354816}
   collisionBox: {fileID: 4180346425201887840}
+  spellObject: {fileID: 0}
   isMoving: 0
   isAttacking: 0
+  isShooting: 0
   isBlocking: 0
   isKnockedBack: 0
+  prideCanTeleport: 0
+  prideHasTeleported: 0
   attackSquash: 0
   isDead: 0
   applyKnockback: 0
+  areaCenter: {x: 0, y: 0}
+  teleportRadius: 0
+  checkRadius: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  teleportCooldown: 5
 --- !u!50 &4180346425558085584
 Rigidbody2D:
   serializedVersion: 4
@@ -389,6 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcca3845b22454043a7a49c6edc4c17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canTeleport: 0
+  canDash: 0
 --- !u!1 &5146418260372526503
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +456,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8a9847f6e900622488e56f4c470bb8fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

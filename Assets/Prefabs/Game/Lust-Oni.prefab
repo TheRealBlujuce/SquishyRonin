@@ -55,6 +55,8 @@ MonoBehaviour:
   blockChance: 0
   bounceForce: 5
   knockbackForce: 36
+  prideTeleportCooldown: 5
+  prideCooldownTimer: 0
   corpsePrefab: {fileID: 5860845829112522354, guid: 94336a0e9d4d8a14bbd30c15b5b58ced, type: 3}
   attackIndicator: {fileID: 7542536858533297024, guid: 9ac7ef7d59c576e45b35c8c580393235, type: 3}
   actorRenderer: {fileID: 3762897857429354816}
@@ -62,8 +64,11 @@ MonoBehaviour:
   spellObject: {fileID: 3400210087791651273, guid: 1c3649ae0ab654e4e9a89663acc8bd51, type: 3}
   isMoving: 0
   isAttacking: 0
+  isShooting: 0
   isBlocking: 0
   isKnockedBack: 0
+  prideCanTeleport: 0
+  prideHasTeleported: 0
   attackSquash: 0
   isDead: 0
   applyKnockback: 0
@@ -212,7 +217,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8a9847f6e900622488e56f4c470bb8fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
