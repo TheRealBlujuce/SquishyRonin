@@ -80,7 +80,8 @@ Material:
     - _ShadowIntensity: 0
     - _Speed: 2
     m_Colors:
-    - _Color: {r: 0.03671236, g: 0.10808297, b: 0.23584902, a: 0.78431374}
+    - _Color: {r: 0.03671236, g: 0.10808294, b: 0.235849, a: 0.5882353}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

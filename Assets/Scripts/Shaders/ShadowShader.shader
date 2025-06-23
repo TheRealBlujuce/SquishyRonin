@@ -13,7 +13,7 @@ Shader "Custom/ShadowShader" {
 	     
 		Pass {
 		    Stencil {
-		        Ref 4
+		        Ref 16
 		        Comp NotEqual
 		        Pass Replace
 		    }

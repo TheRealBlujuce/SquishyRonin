@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     {
         buttonBgImages = new Image[menuButtons.Length];
         isFilling = new bool[menuButtons.Length];
-        localization = FindObjectOfType<GameLocalization>();
+        localization = FindFirstObjectByType<GameLocalization>();
 
         for (int i = 0; i < menuButtons.Length; i++)
         {

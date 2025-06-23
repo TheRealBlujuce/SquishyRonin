@@ -39,7 +39,7 @@ public class GameLocalization : MonoBehaviour
 
     private void UpdateLocalizedTexts()
     {
-        TMP_Text[] textObjects = FindObjectsOfType<TMP_Text>();
+        TMP_Text[] textObjects = FindObjectsByType<TMP_Text>(FindObjectsSortMode.None);
 
         foreach (TMP_Text textObject in textObjects)
         {

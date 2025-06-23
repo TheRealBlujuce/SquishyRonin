@@ -24,8 +24,8 @@ public class EnemySpawner : MonoBehaviour
     {
         waveCountdownText.gameObject.SetActive(false);
         triggerArea.gameObject.SetActive(false);
-        player = FindObjectOfType<Player>();
-        localization = FindObjectOfType<GameLocalization>();
+        player = FindFirstObjectByType<Player>();
+        localization = FindFirstObjectByType<GameLocalization>();
     }
 
     private void Update()

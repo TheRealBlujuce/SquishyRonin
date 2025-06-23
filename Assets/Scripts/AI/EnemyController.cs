@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         actorSpriteRenderer = GetComponentInChildren<ActorSpriteRenderer>();
-        playerObject = FindObjectOfType<Player>();
+        playerObject = FindFirstObjectByType<Player>();
     }
 
     private void Start()
@@ -83,7 +83,11 @@ public class EnemyController : MonoBehaviour
                     break;
                 }
 
-                WrapAroundScreen();
+				if (GameController.gameControllerInstance.currentWorldState == GameController.WorldState.ARENA) 
+				{
+					WrapAroundScreen();
+				}
+                
             }
         }
         else
@@ -191,7 +195,10 @@ public class EnemyController : MonoBehaviour
         if (isAttacking) {
              rb.velocity = Vector2.zero;
             // Calculate the attackMoveDirection based on the stored attackAngle
-            Vector2 attackMoveDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
+            Vector2 attackDirection = (player.position - transform.position).normalized;
+			attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+			Vector2 attackMoveDirection = attackDirection;
+
 
             switch (enemytype)
             {

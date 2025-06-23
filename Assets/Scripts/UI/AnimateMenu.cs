@@ -19,7 +19,7 @@ public class AnimateMenu : MonoBehaviour
     {
         isAnimating = false;
         buttonsSelector = GetComponentInParent<ButtonSelector>();
-        localization = FindObjectOfType<GameLocalization>();
+        localization = FindFirstObjectByType<GameLocalization>();
 
         deathText.text = localization.GetLocalizedTextByValue("deathText");
 

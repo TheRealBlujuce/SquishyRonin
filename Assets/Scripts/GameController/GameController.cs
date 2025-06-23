@@ -14,7 +14,10 @@ public class GameController : MonoBehaviour
     public int currentWaveCountdown {get; private set;}
     public bool gameOver {get; private set;}
     public bool gamePaused {get; private set;}
+
     public GameState currentGameState = GameState.PLAYING;
+    public WorldState currentWorldState = WorldState.WORLD;
+
     public TextMeshProUGUI currentWaveText;
     public TextMeshProUGUI killsText;
     public AnimateMenu gameOverScreen;
@@ -37,6 +40,7 @@ public class GameController : MonoBehaviour
     private string mapleGrove = "Maple_Grove";
     private string birchGrove = "Birch_Grove";
     private string sakuraGrove = "Sakura_Grove";
+	private string overWorld = "World_Map";
 
     public enum GameState 
     {
@@ -46,6 +50,12 @@ public class GameController : MonoBehaviour
         GAMEOVER
     }
 
+	public enum WorldState
+	{
+		WORLD,
+		ARENA,
+		DUNGEON
+	}
 
     private void Awake()
     {
@@ -83,7 +93,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         // Maybe do something with the main menu?
-        screenshake = FindObjectOfType<Screenshake>();
+        screenshake = FindFirstObjectByType<Screenshake>();
         localization = GetComponent<GameLocalization>();
         tempTEXT = GetComponentInChildren<TextMeshProUGUI>();
     }
@@ -137,7 +147,7 @@ public class GameController : MonoBehaviour
 
         if (currentWaveCountdown == 0)
         {
-            currentWaveCountdown = FindObjectOfType<EnemySpawner>().waveCountdown;
+            currentWaveCountdown = FindFirstObjectByType<EnemySpawner>().waveCountdown;
         }
 
     }
@@ -173,23 +183,23 @@ public class GameController : MonoBehaviour
         if (currentGameState == GameState.MENU)
         {
             gameInput.Disable();
-            // var randomMap = Random.Range(0, 3);
+			//var randomMap = Random.Range(0,3);
 
-            // switch(randomMap)
-            // {
-            //     case 0:
-            //         SceneManager.LoadScene(mapleGrove);
-            //     break;
-            //     case 1:
-            //         SceneManager.LoadScene(birchGrove);
-            //     break;
-            //     case 2:
-            //         SceneManager.LoadScene(sakuraGrove);
-            //     break;
-            // }
+			//switch(randomMap)
+			//{
+			//	case 0:
+			//	SceneManager.LoadScene(mapleGrove);
+			//	break;
+			//	case 1:
+			//	SceneManager.LoadScene(birchGrove);
+			//	break;
+			//	case 2:
+			//	SceneManager.LoadScene(sakuraGrove);
+			//	break;
+			//}
 
-            SceneManager.LoadScene("World_Map");
-            localization.SetLanguage(localization.currentLanguage);
+			SceneManager.LoadScene(overWorld);
+			localization.SetLanguage(localization.currentLanguage);
             NewGame();
         }
     }
@@ -259,4 +269,4 @@ public class GameController : MonoBehaviour
     }
 
 
-}
+} 

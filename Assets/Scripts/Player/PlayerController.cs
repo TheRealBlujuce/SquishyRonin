@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer actorRenderer;
     [SerializeField] private GameObject collisionHitBox;
-    [SerializeField] private BoxCollider2D collisionTriggerBox;
     [SerializeField] private ActorSpriteRenderer actorSpriteRenderer;
     public GameObject corpsePrefab;
 
@@ -156,7 +155,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = movementVelocity;
         }
 
-        WrapAroundScreen();
+		if (GameController.gameControllerInstance.currentWorldState == GameController.WorldState.ARENA)
+		{
+			WrapAroundScreen();
+		}
+        
         
     }
 
@@ -314,8 +317,7 @@ public class PlayerController : MonoBehaviour
         actorSpriteRenderer.attack.StopAnimating();
         actorSpriteRenderer.parry.StopAnimating();
 
-        // temporarily disable the collision box so that the player can go through enemies.
-        collisionTriggerBox.enabled = false;
+
 
         // play the roll animation
         actorSpriteRenderer.roll.currentSpriteSet = actorSpriteRenderer.roll.spriteSetRunOne;
@@ -332,7 +334,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.6f);
-        collisionTriggerBox.enabled = true;
         
         yield return new WaitForSeconds(0.125f);
 

@@ -35,7 +35,7 @@ public class ButtonSelector : MonoBehaviour
 
     private void Start()
     {
-        localization = FindObjectOfType<GameLocalization>();
+        localization = FindFirstObjectByType<GameLocalization>();
 
         buttons[0].GetComponentInChildren<TextMeshProUGUI>().text = localization.GetLocalizedTextByValue("tryAgainText");
         buttons[1].GetComponentInChildren<TextMeshProUGUI>().text = localization.GetLocalizedTextByValue("quitText");
