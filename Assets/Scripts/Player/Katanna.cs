@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Katanna : MonoBehaviour
@@ -8,6 +6,7 @@ public class Katanna : MonoBehaviour
     public float thrownSpeed = 12f;
     public float rotationSpeed = 12f;
     public float throwDistance = 6;
+	public bool canCut = true;
     [SerializeField] private Rigidbody2D katannaBody;
     [SerializeField] private BoxCollider2D katannaCollider;
     [SerializeField] private BoxCollider2D katannaTrigger;
@@ -37,6 +36,10 @@ public class Katanna : MonoBehaviour
         katannaTrigger.enabled = false;
     }
 
+	public Rigidbody2D GetKatannaRigidBody()
+	{
+		return katannaBody;
+	}
     private IEnumerator ThrowDistance()
     {
 
@@ -89,7 +92,7 @@ public class Katanna : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player") && canPickup == true)
         {
-            other.gameObject.GetComponent<PlayerController>().hasSword = true;
+            other.gameObject.GetComponent<PlayerController>().swordEqipped = true;
             Destroy(this.gameObject);
         }
     }
@@ -129,7 +132,7 @@ public class Katanna : MonoBehaviour
 
     private void FixedUpdate()
     {
-        WrapAroundScreen();
+        //WrapAroundScreen();
     }
 
 }

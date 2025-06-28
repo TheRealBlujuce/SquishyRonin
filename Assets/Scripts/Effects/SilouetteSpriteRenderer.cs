@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class SilhouetteSpriteRenderer : MonoBehaviour
 {
-    [Tooltip("Assign the player's Transform whose SpriteRenderer we will follow.")]
-    public Transform playerTransform;
+    public static List<SilhouetteSpriteRenderer> AllSilhouettes = new();
+
+    [Tooltip("Assign the actor's Transform whose SpriteRenderer we will follow.")]
+    public Transform actorTransform;
 
     private SpriteRenderer silhouetteRenderer;
     private SpriteRenderer playerSpriteRenderer;
@@ -14,19 +17,30 @@ public class SilhouetteSpriteRenderer : MonoBehaviour
     {
         silhouetteRenderer = GetComponent<SpriteRenderer>();
 
-        if (playerTransform != null)
-            playerSpriteRenderer = playerTransform.GetComponent<SpriteRenderer>();
+        if (actorTransform != null)
+            playerSpriteRenderer = actorTransform.GetComponent<SpriteRenderer>();
 
         silhouetteRenderer.enabled = false; // Start disabled
+
+        // Add self to static list
+        if (!AllSilhouettes.Contains(this))
+            AllSilhouettes.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        // Remove self from static list
+        if (AllSilhouettes.Contains(this))
+            AllSilhouettes.Remove(this);
     }
 
     private void LateUpdate()
     {
-        if (!isVisible || playerTransform == null || playerSpriteRenderer == null)
+        if (!isVisible || actorTransform == null || playerSpriteRenderer == null)
             return;
 
-        // Sync visuals with player
-        transform.localScale = playerTransform.localScale;
+        // Sync visuals with actor
+        transform.localScale = actorTransform.localScale;
         silhouetteRenderer.sprite = playerSpriteRenderer.sprite;
         silhouetteRenderer.flipX = playerSpriteRenderer.flipX;
     }

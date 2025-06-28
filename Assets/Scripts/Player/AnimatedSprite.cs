@@ -10,145 +10,103 @@ public class AnimatedSprite : MonoBehaviour
     public Sprite[] spriteSetParry;
     public Sprite[] currentSpriteSet;
 
-    private Player actorPlayer;
-
     public float framerate = 1f / 6f;
     public SpriteRenderer actorRenderer;
+
     public int frame;
-    public bool useFastFramerate = false;
     public bool animateOnce = false;
+
     [SerializeField] public bool isAnimating = false;
     [SerializeField] public bool corpseAnimEnd = false;
-    private Coroutine animateFramesCoroutine;
-    private Coroutine animateFramesOnceCoroutine;
-    private Coroutine animateCorpseFramesCoroutine;
+
+    private Coroutine activeCoroutine;
+    private Player actorPlayer;
+
     private void Awake()
     {
         actorRenderer = GetComponent<SpriteRenderer>();
         actorPlayer = GetComponentInParent<Player>();
-        
-    }
-
-    private void Animate()
-    {
-        
-        frame++;
-        if(frame >= currentSpriteSet.Length)
-        {
-            frame = 0;
-        }
-        if (frame >= 0 && frame < currentSpriteSet.Length)
-        {
-            actorRenderer.sprite = currentSpriteSet[frame];
-        }
-        
     }
 
     public void AnimateLoop()
     {
-        if(!isAnimating){ isAnimating = true; StartCoroutine(AnimateFrames()); }
+        if (isAnimating) return;
+        isAnimating = true;
+        activeCoroutine = StartCoroutine(AnimateFramesLoop());
     }
 
     public void AnimateOnce()
     {
-        if (!isAnimating)
-        {
-            isAnimating = true;
-            StartCoroutine(AnimateFramesOnce());
-        }
-
+        if (isAnimating) return;
+        isAnimating = true;
+        activeCoroutine = StartCoroutine(AnimateFramesOnce());
     }
+
     public void AnimateCorpse()
     {
-        if (!isAnimating)
-        {
-            isAnimating = true;
-            StartCoroutine(AnimateCorpseFrames());
-        }
-
+        if (isAnimating) return;
+        isAnimating = true;
+        activeCoroutine = StartCoroutine(AnimateCorpseFrames());
     }
 
     public void StopAnimating()
     {
-        
         isAnimating = false;
-        if (animateFramesCoroutine != null)
-            StopCoroutine(animateFramesCoroutine);
-        if (animateFramesOnceCoroutine != null)
-            StopCoroutine(animateFramesOnceCoroutine);
-        if (animateCorpseFramesCoroutine != null)
-            StopCoroutine(animateCorpseFramesCoroutine);
-    
-    }
-    public bool CheckAnimating()
-    {
-        return isAnimating;
+        if (activeCoroutine != null)
+        {
+            StopCoroutine(activeCoroutine);
+            activeCoroutine = null;
+        }
     }
 
-    private IEnumerator AnimateFrames()
+    private void Animate()
     {
-        if (isAnimating)
+        if (currentSpriteSet == null || currentSpriteSet.Length == 0) return;
+
+        frame = (frame + 1) % currentSpriteSet.Length;
+        actorRenderer.sprite = currentSpriteSet[frame];
+    }
+
+    private IEnumerator AnimateFramesLoop()
+    {
+        while (isAnimating)
         {
             Animate();
-            
             yield return new WaitForSeconds(framerate);
 
-            if (actorPlayer != null)
-            {
-                if (actorPlayer.isDead == true){ yield break;}
-            }
-
-            animateFramesCoroutine = StartCoroutine(AnimateFrames()); 
+            if (actorPlayer != null && actorPlayer.isDead)
+                yield break;
         }
-
     }
 
     private IEnumerator AnimateFramesOnce()
     {
-   
-        // if (useFastFramerate) { currentFramerate = fastframerate; } else { currentFramerate = framerate; }
-        if (isAnimating)
+        while (isAnimating && frame < currentSpriteSet.Length - 1)
         {
             Animate();
-            
             yield return new WaitForSeconds(framerate);
 
-            if (actorPlayer != null)
-            {
-                if (actorPlayer.isDead == true){ yield break;}
-            }
-            
-            if (frame < currentSpriteSet.Length-1){ animateFramesOnceCoroutine = StartCoroutine(AnimateFramesOnce()); }
-            else
-            if (frame >= currentSpriteSet.Length-1){ isAnimating = false; }
+            if (actorPlayer != null && actorPlayer.isDead)
+                yield break;
         }
+
+        isAnimating = false;
     }
+
     private IEnumerator AnimateCorpseFrames()
     {
-   
-        // if (useFastFramerate) { currentFramerate = fastframerate; } else { currentFramerate = framerate; }
-        if (isAnimating)
+        while (isAnimating && frame < currentSpriteSet.Length - 1)
         {
             Animate();
-            
             yield return new WaitForSeconds(framerate);
-
-            // if (actorPlayer != null)
-            // {
-            //     if (actorPlayer.isDead == true){ yield break;}
-            // }
-            
-            if (frame < currentSpriteSet.Length-1){ animateCorpseFramesCoroutine = StartCoroutine(AnimateCorpseFrames()); }
-            else
-            if (frame >= currentSpriteSet.Length-1){ isAnimating = false; corpseAnimEnd = true; 
-            
-                if (gameObject.name == "Doubt-Oni-Corpse")
-                {
-                    Destroy(this.gameObject);
-                } 
-                yield break; 
-            }
         }
-        
+
+        isAnimating = false;
+        corpseAnimEnd = true;
+
+        if (gameObject.name == "Doubt-Oni-Corpse")
+        {
+            Destroy(gameObject);
+        }
     }
 }

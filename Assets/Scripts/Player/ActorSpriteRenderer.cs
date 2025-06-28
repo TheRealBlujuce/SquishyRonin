@@ -13,7 +13,7 @@ public class ActorSpriteRenderer : MonoBehaviour
     [SerializeField] private float targetXScale;
     [SerializeField] private float targetYScale;
 
-    [Header("Use Squash/Stretch, Is Corpse or Effect?,\n Scale Speed, and Attack Combo")]
+    [Header("Use Squash/Stretch, Is Corpse or Effect?, Scale Speed, and Attack Combo")]
     public bool usesSquash = false;
     public bool isCorpse = false;
     public bool isEffect = false;
@@ -21,170 +21,109 @@ public class ActorSpriteRenderer : MonoBehaviour
     public int attackCombo = 0;
     public Color corpseColor;
 
-    [Header("Squash and Strech")]
+    [Header("Squash and Stretch")]
     public float squashXAttack = 0.5f;
     public float squashYAttack = 0.5f;
-    // public float squashXLand = 0.5f;
-    // public float squashYLand = 0.5f;
 
-    [Header("Sprite Set ")]
+    [Header("Sprite Set")]
     public Sprite idle;
     public Sprite altIdle;
-    // public Sprite jump;
-    // public Sprite slide;
-    // public Sprite slideDash;
-
-    // [Header("Small Sprite Set 2")]
-    // public Sprite idleTwo;
-    // public Sprite jumpTwo;
-    // public Sprite slideTwo;
-    // public Sprite slideDashTwo;
-
-    // [Header("Big Sprite Set 1")]
-    // public Sprite idleBig;
-    // public Sprite jumpBig;
-    // public Sprite slideBig;
-    // public Sprite slideDashBig;
-
-    // [Header("Big Sprite Set 2")]
-    // public Sprite idleBigTwo;
-    // public Sprite jumpBigTwo;
-    // public Sprite slideBigTwo;
-    // public Sprite slideDashBigTwo;
 
     [Header("Animated Sprites")]
-
-    [Header("Run Sprite")]
     public AnimatedSprite run;
-
-    [Header("Attack Sprite")]
     public AnimatedSprite attack;
-    public int animCombo = 0;
-
-    [Header("Parry Sprite")]
     public AnimatedSprite parry;
-
-    [Header("Roll Sprite")]
     public AnimatedSprite roll;
-
-
-
 
     private void Awake()
     {
         actorRenderer = GetComponent<SpriteRenderer>();
+        actorTransform = transform;
 
-        if (GetComponentInParent<PlayerController>() != null) { actorMovement = GetComponentInParent<PlayerController>(); }
-        if (GetComponentInParent<EnemyController>() != null) { enemyActorMovement = GetComponentInParent<EnemyController>(); }
-        
-        actorTransform = GetComponent<Transform>();
+        actorMovement = GetComponentInParent<PlayerController>();
+        enemyActorMovement = GetComponentInParent<EnemyController>();
     }
 
     private void LateUpdate()
     {
-
-        
         UpdateSpriteSet();
-        // UpdateEnemySpriteSet();
-
-    }
-
-
-    private void UpdateSpriteSet()
-    {
-        
-        switch(isEffect)
-        {
-            case true:
-                if (actorMovement != null && actorRenderer.enabled == true && run.isAnimating != true)
-                {
-                    run.currentSpriteSet = run.spriteSetRunOne;
-                    run.AnimateLoop();
-                    run.enabled = true;
-                }
-            break;
-            case false:
-                if (actorMovement != null)
-                {
-                    if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling && !actorMovement.hasThrown)
-                    { 
-                        attack.StopAnimating();
-                        if (actorMovement.hasSword){ run.currentSpriteSet = run.spriteSetRunOne; }
-                        else
-                        if (!actorMovement.hasSword){ run.currentSpriteSet = run.spriteSetRunTwo; }
-
-                        if (run.isAnimating != true)
-                        {
-                            run.AnimateLoop();
-                            run.enabled = actorMovement.isMoving;
-                        }
-                    }
-                    else
-                    if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
-                    { 
-                        if (actorMovement.hasSword){ actorRenderer.sprite = idle; }
-                        else
-                        if (!actorMovement.hasSword){ actorRenderer.sprite = altIdle; }
-                        run.StopAnimating(); run.enabled = actorMovement.isMoving; 
-                     }
-
-                }
-            break;
-        }
-
     }
 
     private void Update()
     {
+        UpdateSquashStretch();
+        UpdateCorpseState();
+    }
 
-        // used to update the squash and stretch
-        if (usesSquash)
+    private void UpdateSpriteSet()
+    {
+        if (isEffect)
         {
-            Vector3 baseScale = new Vector3(currentXScale, currentYScale, 1f);
-            Vector3 targetScale = new Vector3(targetXScale, targetYScale, 1f);
-
-            // player actor
-            if (actorMovement != null)
+            if (actorMovement != null && actorRenderer.enabled && !run.isAnimating)
             {
-                if ((actorMovement.isAttacking || actorMovement.isRolling || actorMovement.hasThrown) && actorMovement.attackSquash)
-                {
-                    actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, targetScale, scaleSpeed * Time.deltaTime); 
-                }
-                else
-                {
-                    actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, baseScale, scaleSpeed * Time.deltaTime); 
-                }
+                run.currentSpriteSet = run.spriteSetRunTwo;
+                run.AnimateLoop();
+                run.enabled = true;
             }
-            // enemy actor
-            if (enemyActorMovement != null)
-            {
-                if (enemyActorMovement.isAttacking && enemyActorMovement.attackSquash)
-                {
-                    actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, targetScale, scaleSpeed * Time.deltaTime); 
-                }
-                else
-                {
-                    actorTransform.localScale = Vector3.Lerp(actorTransform.localScale, baseScale, scaleSpeed * Time.deltaTime); 
-                }
-            }
-            
+            return;
         }
 
-        if (isCorpse)
-        {   
-            
-            if (!run.corpseAnimEnd)
+        if (actorMovement == null) return;
+
+        if (actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling && !actorMovement.hasThrown)
+        {
+            attack.StopAnimating();
+
+            //run.currentSpriteSet = actorMovement.swordEqipped ? run.spriteSetRunTwo : run.spriteSetRunOne;
+            run.currentSpriteSet = run.spriteSetRunTwo;
+
+            if (!run.isAnimating)
             {
-                actorRenderer.color = Color.Lerp(actorRenderer.color, corpseColor, 0.01f);
-                run.currentSpriteSet = run.spriteSetRunOne; run.AnimateCorpse();
+                run.AnimateLoop();
+                run.enabled = true;
             }
-            else
-            {
-                actorRenderer.sprite = idle;
-                actorRenderer.color = corpseColor;
-            }
+        }
+        else if (!actorMovement.isMoving && !actorMovement.isAttacking && !actorMovement.isBlocking && !actorMovement.isRolling)
+        {
+            //actorRenderer.sprite = actorMovement.swordEqipped ? altIdle : idle;
+            actorRenderer.sprite = altIdle;
+            run.StopAnimating();
+            run.enabled = false;
         }
     }
 
+    private void UpdateSquashStretch()
+    {
+        if (!usesSquash) return;
 
+        Vector3 baseScale = new(currentXScale, currentYScale, 1f);
+        Vector3 targetScale = new(targetXScale, targetYScale, 1f);
+
+        bool shouldSquash =
+            (actorMovement != null && (actorMovement.isAttacking || actorMovement.isRolling || actorMovement.hasThrown) && actorMovement.attackSquash) ||
+            (enemyActorMovement != null && enemyActorMovement.isAttacking && enemyActorMovement.attackSquash);
+
+        actorTransform.localScale = Vector3.Lerp(
+            actorTransform.localScale,
+            shouldSquash ? targetScale : baseScale,
+            scaleSpeed * Time.deltaTime
+        );
+    }
+
+    private void UpdateCorpseState()
+    {
+        if (!isCorpse) return;
+
+        if (!run.corpseAnimEnd)
+        {
+            actorRenderer.color = Color.Lerp(actorRenderer.color, corpseColor, 0.01f);
+            run.currentSpriteSet = run.spriteSetRunOne;
+            run.AnimateCorpse();
+        }
+        else
+        {
+            actorRenderer.sprite = idle;
+            actorRenderer.color = corpseColor;
+        }
+    }
 }

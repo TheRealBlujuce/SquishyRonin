@@ -100,22 +100,25 @@ Shader "Custom/DepthWindShader"
             }
 
             v2f vert(appdata v)
-            {
-                v2f o;
+			{
+				v2f o;
 
-                float time = _Time.y * _WindSpeed;
+				float time = _Time.y * _WindSpeed;
 
-                // Add side-to-side sway to the whole sprite's vertex position
-                // Using vertex.y for slight variation, but you can just use time for uniform sway
-                float sway = sin(time + v.vertex.y * 5.0) * _SwayAmplitude;
-                float4 displaced = v.vertex;
-                displaced.x += sway;
+				// Apply both horizontal and vertical sway
+				float swayX = sin(time + v.vertex.y * 5.0) * _SwayAmplitude;
+				float swayY = cos(time + v.vertex.x * 5.0) * _SwayAmplitude;
 
-                o.vertex = UnityObjectToClipPos(displaced);
-                o.uv = v.uv;
+				float4 displaced = v.vertex;
+				displaced.x += swayX;
+				displaced.y += swayY;
 
-                return o;
-            }
+				o.vertex = UnityObjectToClipPos(displaced);
+				o.uv = v.uv;
+
+				return o;
+			}
+
 
             fixed4 frag(v2f i) : SV_Target
             {

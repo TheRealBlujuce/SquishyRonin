@@ -73,15 +73,16 @@ Material:
     - _BlendValue: 0.01
     - _CellDensity: 8
     - _EnableExternalAlpha: 0
-    - _PixelSize: 1024
+    - _PixelSize: 512
     - _PixelationAmount: 512
     - _Speed: 1.25
     - _SwayAmplitude: 0.1
     - _WindSpeed: 1.25
-    - _WindStrength: 0.15
+    - _WindStrength: 0.2
     m_Colors:
     - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 0.34117648, b: 0.30588236, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -715,8 +715,8 @@ TextureImporter:
         y: 432
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -737,8 +737,8 @@ TextureImporter:
         y: 432
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -759,8 +759,8 @@ TextureImporter:
         y: 432
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -781,8 +781,8 @@ TextureImporter:
         y: 432
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -979,8 +979,8 @@ TextureImporter:
         y: 416
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.45, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1023,8 +1023,8 @@ TextureImporter:
         y: 416
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1045,8 +1045,8 @@ TextureImporter:
         y: 416
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.3, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1199,8 +1199,8 @@ TextureImporter:
         y: 400
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1221,8 +1221,8 @@ TextureImporter:
         y: 400
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1353,8 +1353,8 @@ TextureImporter:
         y: 384
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1375,8 +1375,8 @@ TextureImporter:
         y: 384
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1397,8 +1397,8 @@ TextureImporter:
         y: 384
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.6, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1419,8 +1419,8 @@ TextureImporter:
         y: 384
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.6, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2163,10 +2163,10 @@ TextureImporter:
       name: Tree-Leaves
       rect:
         serializedVersion: 2
-        x: 172
-        y: 170
-        width: 56
-        height: 41
+        x: 176
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3791,8 +3791,8 @@ TextureImporter:
       name: GrassBlades
       rect:
         serializedVersion: 2
-        x: 231
-        y: 291
+        x: 128
+        y: 208
         width: 15
         height: 10
       alignment: 7
@@ -3879,10 +3879,10 @@ TextureImporter:
       name: Tree-Leaves-Shadow
       rect:
         serializedVersion: 2
-        x: 92
-        y: 171
-        width: 56
-        height: 41
+        x: 96
+        y: 160
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4514,7 +4514,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Orc-House
+      name: Orc-House-Player
       rect:
         serializedVersion: 2
         x: 44
@@ -4869,8 +4869,8 @@ TextureImporter:
       name: Collision-Full
       rect:
         serializedVersion: 2
-        x: 224
-        y: 240
+        x: 304
+        y: 288
         width: 16
         height: 16
       alignment: 0
@@ -4891,8 +4891,8 @@ TextureImporter:
       name: Collision-Left
       rect:
         serializedVersion: 2
-        x: 256
-        y: 272
+        x: 288
+        y: 288
         width: 16
         height: 16
       alignment: 0
@@ -4913,8 +4913,8 @@ TextureImporter:
       name: Collision-Right
       rect:
         serializedVersion: 2
-        x: 272
-        y: 272
+        x: 320
+        y: 288
         width: 16
         height: 16
       alignment: 0
@@ -4935,12 +4935,12 @@ TextureImporter:
       name: Collision-Top
       rect:
         serializedVersion: 2
-        x: 288
+        x: 304
         y: 272
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -4949,6 +4949,424 @@ TextureImporter:
       bones: []
       spriteID: 96454497c775e8b478541a8a2d37d9b7
       internalID: -1599568968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc House
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 80
+        width: 64
+        height: 63
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e6ba4e620f12bf4584434384bb33b55
+      internalID: 136660770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart-Full
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c6262df0425594b9a7bfb80ea2fb23
+      internalID: 731612286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart-Empty
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 917e8c18d6fffdc4fb97bb41f88068df
+      internalID: 1966908612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bush
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a637928696486894f9c588a4a063d4ea
+      internalID: -1474928294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CollisionTop
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a0fdeafd2671f04c8efd50788013b0d
+      internalID: 824597666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collision-corner-1
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11cdb512c2a023045abd2bfe8def567a
+      internalID: -1495333536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collision-corner-2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4e4aecc79c5904c919c276c7b0f641
+      internalID: -1639006508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collision-corner-3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f8fcd5c860feb4ca073058e5215f96
+      internalID: -242343314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collision-corner-4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22864607103b9a749ad3b8056411179c
+      internalID: 955865880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stonebloom_stone-pillar-a
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 192
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178441f6ed7011d48b93fd5fd4acaf45
+      internalID: -398092418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stonebloom_stone-pillar-b
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 192
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a2cedc3d3a36be43a833a8765f12a23
+      internalID: 905899858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stonebloom_stone-pillar-c
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 192
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be23c83a516c94a4d92e7d59982717a8
+      internalID: -1624088342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stonebloom_stone-pillar-a_d
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 160
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12b4f8e07149a04c9422225045de5d8
+      internalID: -639946445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stonebloom_stone-pillar-b_d
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 160
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0de9106eeab0b14996fc6dbecc4b2c5
+      internalID: 117949167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stonebloom_stone-pillar-c_d
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 160
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea65b2a4abfe264eba10a330178e730
+      internalID: 1604517301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc-Shrine
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 80
+        width: 72
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab046b0d4fceff34894c130c5f3e5c57
+      internalID: 1364560811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pot
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0573e64d0c27e4699adeb113eb65bd
+      internalID: 2080770363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy-spawn-pos
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40267bbc05e0d304aa7615405adc4906
+      internalID: -1368839933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smoke
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 309
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2432d4fc3af35034da5b2e0b6521a132
+      internalID: 946849214
       vertices: []
       indices: 
       edges: []
@@ -4970,6 +5388,7 @@ TextureImporter:
       Blood-Effect-2: 1356572863
       Blood-Effect-3: -360394300
       Blood-Puddle: 1710192763
+      Bush: -1474928294
       ButtonBg: 475943364
       Cliff-1: -1383761994
       Cliff-10: 509515142
@@ -4986,6 +5405,11 @@ TextureImporter:
       Collision-Left: -1442754945
       Collision-Right: -616004749
       Collision-Top: -1599568968
+      Collision-corner-1: -1495333536
+      Collision-corner-2: -1639006508
+      Collision-corner-3: -242343314
+      Collision-corner-4: 955865880
+      CollisionTop: 824597666
       Controls-C-Key: 1806262877
       Controls-Circle: 1484135120
       Controls-Down-Arrow: 1610352138
@@ -5063,6 +5487,8 @@ TextureImporter:
       Ground-Leaves-Birch: -645479025
       Ground-Leaves-Maple: -1914070260
       Ground-Leaves-Sakura: -1632619012
+      Heart-Empty: 1966908612
+      Heart-Full: 731612286
       HitBox-1: -1657446375
       Hitbox: -847316566
       Hitbox-Big: -1641159354
@@ -5110,7 +5536,9 @@ TextureImporter:
       Oni-Walk-2: -1641646642
       Oni-Walk-3: -825150183
       Oni-Walk-4: 123143508
-      Orc-House: 1146300085
+      Orc House: 136660770
+      Orc-House-Player: 1146300085
+      Orc-Shrine: 1364560811
       Player-Attack-A-1: 324209421
       Player-Attack-A-2: 1902311761
       Player-Attack-A-3: 18643915
@@ -5165,6 +5593,7 @@ TextureImporter:
       Samurai-Mini_89: 82262994
       Shadow: -1780077496
       Shrine-Pillar: 1837704579
+      Smoke: 946849214
       Stair-Barrier-1: -1443792363
       Stair-Barrier-2: -253517768
       Stair-Barrier-3: -1393043937
@@ -5179,6 +5608,12 @@ TextureImporter:
       Stone-7: -1324764046
       Stone-8: 1834409424
       Stone-9: -682430943
+      Stonebloom_stone-pillar-a: -398092418
+      Stonebloom_stone-pillar-a_d: -639946445
+      Stonebloom_stone-pillar-b: 905899858
+      Stonebloom_stone-pillar-b_d: 117949167
+      Stonebloom_stone-pillar-c: -1624088342
+      Stonebloom_stone-pillar-c_d: 1604517301
       Torii: -523383195
       Torri-NoPortal: 2015437455
       Tree-Leaves: -1018791918
@@ -5195,6 +5630,8 @@ TextureImporter:
       Water-8: -1466818364
       Water-9: -1538734904
       XButton: -2002745718
+      enemy-spawn-pos: -1368839933
+      pot: 2080770363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

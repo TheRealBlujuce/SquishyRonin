@@ -4,17 +4,21 @@ using TMPro;
 using System.Collections.Generic;
 public class EnemySpawner : MonoBehaviour
 {
-    public List<GameObject> enemyPrefabs = new List<GameObject>();      // The enemy prefab to spawn
-    public Transform spawnPoint;        // The spawn point of the enemies
-    public float waveDuration = 60f;    // Duration of each wave (in seconds)
-    public float timeBetweenWaves = 5f; // Time between waves (in seconds)
-    public int totalWaves = 10;         // Total number of waves
-    private int currentWave = 1;       // Current wave number
+    public List<GameObject> enemyPrefabs = new List<GameObject>();
+	public GameObject spawnPrefab;
+    public Transform spawnPoint;
+    public float spawnRadius = 5f; // New: Radius around the spawn point to randomize
+    public float waveDuration = 60f;
+    public float timeBetweenWaves = 5f;
+    public int totalWaves = 10;
+    public float spawnSpeed = 1.25f;
+    private int currentWave = 1;
     public int waveCountdown = 5;
-    private bool isWaveActive = false; // Tracks if a wave is active
-    public bool canStartNextWave = true; // Tracks if the player can start the next wave
+    private bool isWaveActive = false;
+    public bool canStartNextWave = true;
     public bool playerIsInTrigger = false;
     public bool isCountingDown = false;
+
     [SerializeField] private TextMeshProUGUI waveCountdownText;
     [SerializeField] private SpriteRenderer triggerArea;
     [SerializeField] private Player player;
@@ -23,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         waveCountdownText.gameObject.SetActive(false);
-        triggerArea.gameObject.SetActive(false);
+        triggerArea.GetComponent<SpriteRenderer>().enabled = false;
         player = FindFirstObjectByType<Player>();
         localization = FindFirstObjectByType<GameLocalization>();
     }
@@ -69,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
 
             // Prevent the player from starting another wave while this one is active
             canStartNextWave = false;
+			GameController.gameControllerInstance.currentWorldState = GameController.WorldState.ARENA;
 
             yield return new WaitForSeconds(2f); // Wait for 2 seconds before starting the wave
 
@@ -80,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
             while (!player.isDead && Time.time < waveEndTime)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(2f); // Adjust the time between enemy spawns
+                yield return new WaitForSeconds(spawnSpeed); // Adjust the time between enemy spawns
             }
 
             // After we spawn an enemy, check to see if the player was killed
@@ -95,6 +100,8 @@ public class EnemySpawner : MonoBehaviour
             isWaveActive = false;
             currentWave++;
             GameController.gameControllerInstance.AddWave();
+			
+			GameController.gameControllerInstance.currentWorldState = GameController.WorldState.WORLD;
 
             // Check if all waves have been completed
             if (currentWave <= totalWaves)
@@ -150,56 +157,40 @@ public class EnemySpawner : MonoBehaviour
     private void ResetActiveObjects()
     {
         waveCountdownText.gameObject.SetActive(false);
-        triggerArea.gameObject.SetActive(false);
+        triggerArea.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    private void SpawnEnemy()
-    {   
+	private void SpawnEnemy()
+    {
         int chooseEnemy = Random.Range(0, enemyPrefabs.Count);
-        Vector2 spawnPos = new Vector2(spawnPoint.position.x, spawnPoint.position.y - 1f);
-        Instantiate(enemyPrefabs[chooseEnemy], spawnPos, Quaternion.identity);
+
+        // Generate a random point within a circle
+        Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
+        Vector2 spawnPos = (Vector2)spawnPoint.position + randomOffset;
+
+        GameObject spawn = Instantiate(spawnPrefab, spawnPos, Quaternion.identity);
+		spawn.GetComponent<SpawnAfterBuildup>().enemyPrefab = enemyPrefabs[chooseEnemy];
     }
 
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Check if the player enters the trigger area
-        if (other.isTrigger && other.CompareTag("Player") && canStartNextWave)
-        {
-            // Show the "Press F to Start" text (you can implement this with UI or a Text component)
-            // Set a boolean or trigger animation to display the text to guide the player.
-            waveCountdownText.gameObject.SetActive(true);
-            // Debug.Log("Player is in Trigger!");
-            playerIsInTrigger = true;
-            
-            triggerArea.gameObject.SetActive(true);
+	public TextMeshProUGUI GetWaveCountdownText()
+	{
+		return waveCountdownText;
+	}
 
-        }
-    }
+	public GameLocalization GetLocalization()
+	{
+		return localization;
+	}
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.isTrigger && other.CompareTag("Player"))
-        {
-            playerIsInTrigger = true;   
-        }
-    }
+	private void OnDrawGizmosSelected()
+	{
+		if (spawnPoint != null)
+		{
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere(spawnPoint.position, spawnRadius);
+		}
+	}
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        // Check if the player leaves the trigger area
-        if (other.isTrigger && other.CompareTag("Player"))
-        {
-            // Hide the "Press F to Start" text (you can implement this with UI or a Text component)
-            // Set a boolean or trigger animation to hide the text.
-           waveCountdownText.gameObject.SetActive(false);
-           playerIsInTrigger = false;
-           triggerArea.gameObject.SetActive(false);
-           waveCountdown = 5;
-           waveCountdownText.text = localization.GetLocalizedTextByValue("wavesCountdownText") + waveCountdown.ToString();
-           isCountingDown = false;
-        }
-    }
 
 }
 

@@ -2,29 +2,31 @@ using UnityEngine;
 
 public class SilhouetteEnabler : MonoBehaviour
 {
-    public SilhouetteSpriteRenderer silhouetteRenderer;
+    private void SetSilhouetteVisibleForCollider(Transform otherTransform, bool visible)
+    {
+        foreach (var silhouette in SilhouetteSpriteRenderer.AllSilhouettes)
+        {
+            if (otherTransform == silhouette.actorTransform.parent)
+            {
+                Debug.Log($"{otherTransform.name} {(visible ? "entered" : "exited")} silhouette trigger");
+                silhouette.SetSilhouetteVisible(visible);
+                break;  // Only one silhouette per transform expected
+            }
+        }
+    }
 
-	private void Awake()
-	{
-		silhouetteRenderer = FindFirstObjectByType<SilhouetteSpriteRenderer>();
-	}
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        SetSilhouetteVisibleForCollider(other.transform, true);
+    }
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if (silhouetteRenderer != null && other.transform == silhouetteRenderer.playerTransform.parent)
-		{
-			Debug.Log("Player entered silhouette trigger");
-			silhouetteRenderer.SetSilhouetteVisible(true);
-		}
-	}
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        SetSilhouetteVisibleForCollider(other.transform, true);
+    }
 
-	private void OnTriggerExit2D(Collider2D other)
-	{
-		if (silhouetteRenderer != null && other.transform == silhouetteRenderer.playerTransform.parent)
-		{
-			Debug.Log("Player exited silhouette trigger");
-			silhouetteRenderer.SetSilhouetteVisible(false);
-		}
-	}
-
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        SetSilhouetteVisibleForCollider(other.transform, false);
+    }
 }

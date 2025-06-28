@@ -150,7 +150,9 @@ public class ButtonSelector : MonoBehaviour
         // Restart the level (you can replace this with your level restart logic)
         //Debug.Log("Restarting the level...");
         // Put your level restart code here
+		GameController.gameControllerInstance.currentWorldState = GameController.WorldState.WORLD;
         GameController.gameControllerInstance.RestartLevel();
+
     }
 
     // Called when the Quit button is clicked
@@ -159,6 +161,7 @@ public class ButtonSelector : MonoBehaviour
         // Go back to the main menu (you can replace this with your menu scene loading logic)
         //Debug.Log("Going back to the main menu...");
         // Put your menu scene loading code here
+		GameController.gameControllerInstance.currentWorldState = GameController.WorldState.WORLD;
         GameController.gameControllerInstance.ReturnToMenu();
     }
 

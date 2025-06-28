@@ -10,14 +10,17 @@ public class PlayerController : MonoBehaviour
     public float runningSpeedMultiplier = 1.5f;
     public float attackMovementSpeedMultiplier = 1.75f;
     public float knockbackForce = 5f;
+    public float movementFriction = 0.5f;
     public GameObject thrownWep;
 
     [Header("Player Input")]
     [SerializeField] public Player player;
     [SerializeField] private PlayerInput currentGameInput;
-    [SerializeField] private Vector2 movementInput;
-    [SerializeField] private Vector2 previousMovementInput;
-    [SerializeField] private Vector2 movementVelocity;
+    private Vector2 movementInput;
+    private Vector2 movementVelocity;
+
+    [SerializeField] private HeartUI heartUI;
+	[SerializeField] private SpriteRenderer katanna;
 
     public bool isMoving;
     public bool isRunning;
@@ -26,20 +29,27 @@ public class PlayerController : MonoBehaviour
     public bool isBlocking;
     public bool isRolling;
     public bool hasThrown;
-    public bool canBeHit = true; // this is to apply I-Frames to the player  when rolling
-    public bool hasSword = true; // this is to apply I-Frames to the player  when rolling
+    public bool canBeHit = true; // I-frames
+    public bool hasSword = true;
+	public bool swordEqipped = false;
     public bool attackSquash;
     public int animCombo = 0;
     public bool isBlockParryTiming;
     public bool isKnockedBack;
 
     private float attackAngle;
-    private Vector2 movementDirection;
+	private int lastFacingDirection = 1; // 1 = right, -1 = left
+
     private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer actorRenderer;
     [SerializeField] private GameObject collisionHitBox;
     [SerializeField] private ActorSpriteRenderer actorSpriteRenderer;
     public GameObject corpsePrefab;
+
+    // Cache components from collisionHitBox to avoid repeated GetComponentInChildren calls
+    private BoxCollider2D collisionBoxCollider;
+    private SpriteRenderer collisionSpriteRenderer;
+    private ActorSpriteRenderer collisionActorSpriteRenderer;
 
     private void Awake()
     {
@@ -47,131 +57,119 @@ public class PlayerController : MonoBehaviour
         currentGameInput = GameController.gameControllerInstance.gameInput;
         actorRenderer = GetComponentInChildren<SpriteRenderer>();
         player = GetComponent<Player>();
-        
+        heartUI = FindFirstObjectByType<HeartUI>();
+
+        collisionBoxCollider = collisionHitBox.GetComponentInChildren<BoxCollider2D>();
+        collisionSpriteRenderer = collisionHitBox.GetComponentInChildren<SpriteRenderer>();
+        collisionActorSpriteRenderer = collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>();
     }
 
     private void Update()
     {
-        if (!player.isDead)
+        if (player.isDead)
+            return;
+
+        movementInput = currentGameInput.PlayerMovement.Movement.ReadValue<Vector2>().normalized;
+
+        isMoving = movementInput.sqrMagnitude > 0;
+
+		if (!isAttacking)
+		{
+			if (movementInput.x != 0)
+			{
+				lastFacingDirection = movementInput.x > 0 ? 1 : -1;
+			}
+			actorRenderer.flipX = (lastFacingDirection == -1);
+
+			float katannaFaceRotation = actorRenderer.flipX ? 200f : -200f;
+			katanna.flipX = actorRenderer.flipX;
+			katanna.transform.localRotation = Quaternion.Euler(0, 0, katannaFaceRotation);
+		}
+
+        if (!isAttacking && !hasThrown && movementVelocity != Vector2.zero)
         {
-            // Read movement input from the Input System
-            movementInput = currentGameInput.PlayerMovement.Movement.ReadValue<Vector2>().normalized;
-            
-            // Read moving and running input from the Input System
-            if (movementInput.x != 0 || movementInput.y != 0) { isMoving = true; } else { isMoving = false; }
-
-            // Flip the renderer if the player is moving
-            if (!isAttacking && movementInput.x > 0 ) { actorRenderer.flipX = false; } else if (!isAttacking && movementInput.x < 0 ) { actorRenderer.flipX = true; }
-            
-            // Rotate the collision box based on movement direction
-            if ( !isAttacking && !hasThrown && movementVelocity != Vector2.zero)
-            {
-                attackAngle = Mathf.Atan2(movementVelocity.y, movementVelocity.x) * Mathf.Rad2Deg;
-                collisionHitBox.transform.rotation = Quaternion.Lerp(collisionHitBox.transform.rotation, Quaternion.AngleAxis(attackAngle, Vector3.forward), 32f * Time.deltaTime);
-            }
-
-            // Read attack input from the Input System
-            if (currentGameInput.PlayerMovement.Attack.triggered && hasSword)
-            {
-                if (!isAttacking && !isBlocking && !isRolling)
-                {
-                    isAttacking = true;
-                    StartCoroutine(PerformAttack());
-                }
-    
-            }
-
-            // Read throw input from the Input System
-            if (currentGameInput.PlayerMovement.Throw.triggered)
-            {
-                if (!isAttacking && !isBlocking && !isRolling && hasSword)
-                {
-                    hasThrown = true;
-                    StartCoroutine(PerformThrow());
-                }
-    
-            }
-
-            // Read roll input from the Input System
-            if (currentGameInput.PlayerMovement.Run.triggered)
-            {
-                if (!isRolling && !isRunning)
-                {
-                    isRolling = true;
-                    StartCoroutine(PerformRoll());
-                }
-    
-            }
-
-            // Check if running
-            if (!currentGameInput.PlayerMovement.Run.IsPressed() && isRunning && !isRolling)
-            {
-                isRunning = false;
-            }
-
-            // Read block input from the Input System
-            if (currentGameInput.PlayerMovement.Block.triggered && hasSword)
-            {
-                if (!isBlocking)
-                {
-                    isBlocking = true;
-                    isAttacking = false;
-                    StartCoroutine(PerformBlock());
-                }
-    
-            }
-            
-            // Check if the player is in the block parry timing window
-            if (isBlocking && actorRenderer.sprite == actorSpriteRenderer.parry.spriteSetParry[3] )
-            {
-                isBlockParryTiming = true;
-            }
-            else
-            {
-                isBlockParryTiming = false;
-            }
+            attackAngle = Mathf.Atan2(movementVelocity.y, movementVelocity.x) * Mathf.Rad2Deg;
+            collisionHitBox.transform.rotation = Quaternion.Lerp(
+                collisionHitBox.transform.rotation,
+                Quaternion.AngleAxis(attackAngle, Vector3.forward),
+                36f * Time.deltaTime);
         }
+
+		if (hasSword && swordEqipped && !isAttacking && !isBlocking)
+		{
+			katanna.enabled = true;
+		}
+
+        // Handle attack input
+        if (currentGameInput.PlayerMovement.Attack.triggered && swordEqipped && !isAttacking && !isBlocking && !isRolling)
+        {
+            isAttacking = true;
+			katanna.enabled = false;
+            StartCoroutine(PerformAttack());
+        }
+
+        // Handle throw input
+        if (currentGameInput.PlayerMovement.Throw.triggered && swordEqipped && !isAttacking && !isBlocking && !isRolling)
+        {
+            hasThrown = true;
+			katanna.enabled = false;
+            StartCoroutine(PerformThrow());
+        }
+
+        // Handle roll input
+        if (currentGameInput.PlayerMovement.Run.triggered && !isRolling && !isRunning)
+        {
+            isRolling = true;
+            StartCoroutine(PerformRoll());
+        }
+
+        // Stop running if run input is released
+        if (!currentGameInput.PlayerMovement.Run.IsPressed() && isRunning && !isRolling)
+        {
+            isRunning = false;
+        }
+
+        // Handle block input
+        if (currentGameInput.PlayerMovement.Block.triggered && swordEqipped && !isBlocking)
+        {
+            isBlocking = true;
+            isAttacking = false;
+			katanna.enabled = false;
+            StartCoroutine(PerformBlock());
+        }
+
+        // Check block parry timing based on animation frame
+        isBlockParryTiming = isBlocking && actorRenderer.sprite == actorSpriteRenderer.parry.spriteSetParry[3];
+
+		// Do the cooldowns
+		CanBeHitCooldown();
+
     }
+
     private void FixedUpdate()
     {
-        // Calculate movement velocity
-        movementVelocity = movementInput.normalized * movementSpeed;
-        movementDirection = rb.velocity.normalized;
-        // Apply running speed multiplier if running
+        movementVelocity = movementInput * movementSpeed;
+
         if (isRunning)
-        {
             movementVelocity *= runningSpeedMultiplier;
-        }
 
-        // Apply attack movement velocity if attacking
-        // if (isAttacking)
-        // {
-        //     movementVelocity *= attackMovementSpeedMultiplier;
-        // }
-
+        // Movement applied only if not attacking/blocking/rolling
         if (!isAttacking && !isBlocking && !isRolling)
         {
-            // Apply movement velocity to the rigidbody
-            rb.velocity = movementVelocity;
+            rb.velocity = Vector2.Lerp(rb.velocity, movementVelocity, Time.fixedDeltaTime * movementFriction);
         }
 
-		if (GameController.gameControllerInstance.currentWorldState == GameController.WorldState.ARENA)
-		{
-			WrapAroundScreen();
-		}
-        
-        
+        // Arena wrap (commented out)
+        if (GameController.gameControllerInstance.currentWorldState == GameController.WorldState.ARENA)
+        {
+            // WrapAroundScreen();
+        }
     }
 
-    // Player Input and Perform State
-    public PlayerInput GetPlayerInput()
-    {
-        return currentGameInput;
-    }
+    public PlayerInput GetPlayerInput() => currentGameInput;
 
     private IEnumerator PerformAttack()
     {
-        // Calculate the attackMoveDirection based on the stored attackAngle
         Vector2 attackMoveDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
 
         rb.velocity = Vector2.zero;
@@ -181,199 +179,164 @@ public class PlayerController : MonoBehaviour
         actorSpriteRenderer.run.StopAnimating();
         actorSpriteRenderer.roll.StopAnimating();
 
-        switch(animCombo)
+        // Enable hitbox components once at start of attack
+        collisionBoxCollider.enabled = true;
+        collisionSpriteRenderer.enabled = true;
+        collisionBoxCollider.isTrigger = true;
+
+        GameController.gameControllerInstance.PlaySwordSwingSound();
+
+        // Handle animation combo
+        switch (animCombo)
         {
             case 0:
-                actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne; 
-                actorSpriteRenderer.attack.AnimateOnce();
-                actorSpriteRenderer.attack.enabled = isAttacking;
+                actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne;
                 animCombo++;
-                collisionHitBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
-                collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
-                collisionHitBox.GetComponentInChildren<BoxCollider2D>().isTrigger = true;
-                GameController.gameControllerInstance.PlaySwordSwingSound();
-                if (animCombo > 1){ animCombo = 0; }
-            break;
+                break;
             case 1:
-                actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackTwo; 
-                actorSpriteRenderer.attack.AnimateOnce();
-                actorSpriteRenderer.attack.enabled = isAttacking;
+                actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackTwo;
                 animCombo++;
-                collisionHitBox.GetComponentInChildren<BoxCollider2D>().enabled = true;
-                collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
-                collisionHitBox.GetComponentInChildren<BoxCollider2D>().isTrigger = true;
-                GameController.gameControllerInstance.PlaySwordSwingSound();
-                if (animCombo > 1){ animCombo = 0; }
-            break;
+                break;
         }
+        if (animCombo > 1) animCombo = 0;
+
+        actorSpriteRenderer.attack.AnimateOnce();
+        actorSpriteRenderer.attack.enabled = true;
 
         yield return new WaitForSeconds(0.1f);
-        
+
         if (!isRolling)
         {
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
         }
-        // Hitbox Animation
+
         yield return new WaitForSeconds(0.025f);
-        // Wait for a second frame
         yield return new WaitForEndOfFrame();
 
-        collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.StopAnimating();  
-        
-        if (collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.isAnimating != true)
+        collisionActorSpriteRenderer.run.StopAnimating();
+        if (!collisionActorSpriteRenderer.run.isAnimating)
         {
-            collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.enabled = false;
-            collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.frame = 0;
-            collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            collisionActorSpriteRenderer.run.enabled = false;
+            collisionActorSpriteRenderer.run.frame = 0;
+            collisionSpriteRenderer.enabled = false;
         }
 
-        // End Squash
         attackSquash = false;
 
         yield return new WaitForSeconds(0.3f);
 
         if (!isRolling)
-        {
-            rb.velocity = Vector2.zero; 
-        }
+            rb.velocity = Vector2.zero;
 
         actorSpriteRenderer.attack.StopAnimating();
 
-        if (actorSpriteRenderer.attack.isAnimating == false)
+        if (!actorSpriteRenderer.attack.isAnimating)
         {
-            //Debug.Log("No longer Attacking!");
             actorSpriteRenderer.attack.frame = 0;
-            collisionHitBox.GetComponentInChildren<BoxCollider2D>().enabled = false;
-            collisionHitBox.GetComponentInChildren<BoxCollider2D>().isTrigger = false;
-            
+            collisionBoxCollider.enabled = false;
+            collisionBoxCollider.isTrigger = false;
             isAttacking = false;
-            actorSpriteRenderer.attack.enabled = isAttacking;
+            actorSpriteRenderer.attack.enabled = false;
         }
-        else
-        {
-            // Debug.Log(actorSpriteRenderer.attack.isAnimating);
-        }
-
     }
+
     private IEnumerator PerformThrow()
     {
-
-        hasSword = false;
+        swordEqipped = false;
         isAttacking = true;
-        // Calculate the throwDirection based on the stored attackAngle
+
         Vector2 throwDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
 
-        // Animate the throw
         actorSpriteRenderer.run.StopAnimating();
         actorSpriteRenderer.roll.StopAnimating();
 
-        actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne; 
+        actorSpriteRenderer.attack.currentSpriteSet = actorSpriteRenderer.attack.spriteSetAttackOne;
         actorSpriteRenderer.attack.AnimateOnce();
-        actorSpriteRenderer.attack.enabled = isAttacking;
+        actorSpriteRenderer.attack.enabled = true;
 
-        // enable the collision box sprite as a effect for throwing
-        collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        collisionSpriteRenderer.enabled = true;
 
-        var i = Instantiate(thrownWep, new Vector2(this.transform.localPosition.x, this.transform.localPosition.y+0.5f), quaternion.identity);
-        i.GetComponent<Katanna>().SetDirection(throwDirection);
+        var thrownWeapon = Instantiate(thrownWep, new Vector2(transform.localPosition.x, transform.localPosition.y + 0.5f), quaternion.identity);
+        thrownWeapon.GetComponent<Katanna>().SetDirection(throwDirection);
 
         yield return new WaitForSeconds(0.1f);
-
         yield return new WaitForSeconds(0.025f);
-
         yield return new WaitForEndOfFrame();
 
-        // disable the collision box sprite as a effect for throwing
-
-        collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.StopAnimating();  
-        
-        if (collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.isAnimating != true)
+        collisionActorSpriteRenderer.run.StopAnimating();
+        if (!collisionActorSpriteRenderer.run.isAnimating)
         {
-            collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.enabled = false;
-            collisionHitBox.GetComponentInChildren<ActorSpriteRenderer>().run.frame = 0;
-            collisionHitBox.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            collisionActorSpriteRenderer.run.enabled = false;
+            collisionActorSpriteRenderer.run.frame = 0;
+            collisionSpriteRenderer.enabled = false;
         }
 
         yield return new WaitForSeconds(0.05f);
-        
+
         actorSpriteRenderer.attack.StopAnimating();
-        if (actorSpriteRenderer.attack.isAnimating == false)
+
+        if (!actorSpriteRenderer.attack.isAnimating)
         {
             actorSpriteRenderer.attack.frame = 0;
             hasThrown = false;
             isAttacking = false;
-            actorSpriteRenderer.attack.enabled = isAttacking;
+            actorSpriteRenderer.attack.enabled = false;
         }
-
     }
+
     private IEnumerator PerformRoll()
     {
         canBeHit = false;
-        // Calculate the attackMoveDirection based on the stored attackAngle
+
         Vector2 rollMoveDirection = Quaternion.AngleAxis(attackAngle, Vector3.forward) * Vector2.right;
-        
-        // stop any other animations
+
         actorSpriteRenderer.run.StopAnimating();
         actorSpriteRenderer.attack.StopAnimating();
         actorSpriteRenderer.parry.StopAnimating();
 
-
-
-        // play the roll animation
         actorSpriteRenderer.roll.currentSpriteSet = actorSpriteRenderer.roll.spriteSetRunOne;
-
         actorSpriteRenderer.roll.frame = 0;
         actorSpriteRenderer.roll.AnimateOnce();
-        actorSpriteRenderer.roll.enabled = isRolling;
+        actorSpriteRenderer.roll.enabled = true;
 
-        // apply force to the rb
         rb.velocity = Vector2.zero;
         rb.AddForce(rollMoveDirection * (knockbackForce + movementSpeed), ForceMode2D.Impulse);
         attackSquash = true;
 
         yield return new WaitForSeconds(0.2f);
-        
+
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.6f);
-        
         yield return new WaitForSeconds(0.125f);
 
         attackSquash = false;
-
         yield return new WaitForSeconds(0.2f);
 
         actorSpriteRenderer.roll.StopAnimating();
 
-        if (actorSpriteRenderer.roll.isAnimating == false)
+        if (!actorSpriteRenderer.roll.isAnimating)
         {
-            //Debug.Log("No longer Attacking!");
-            
             rb.velocity = Vector2.zero;
             isRolling = false;
-            actorSpriteRenderer.roll.enabled = isRolling;
-            // Re-enable the collision box and set the player to running and reset the canBeHit flag.
+            actorSpriteRenderer.roll.enabled = false;
             isRunning = true;
             canBeHit = true;
         }
-        else
-        {
-            // Debug.Log(actorSpriteRenderer.attack.isAnimating);
-        }
-
     }
+
     private IEnumerator PerformBlock()
     {
-        
-        //Debug.Log("Is Blocking!");
         rb.velocity = Vector2.zero;
+
         actorSpriteRenderer.run.StopAnimating();
         actorSpriteRenderer.attack.StopAnimating();
-        actorSpriteRenderer.parry.currentSpriteSet = actorSpriteRenderer.parry.spriteSetParry; 
+
+        actorSpriteRenderer.parry.currentSpriteSet = actorSpriteRenderer.parry.spriteSetParry;
         actorSpriteRenderer.parry.AnimateOnce();
-        actorSpriteRenderer.parry.enabled = isBlocking;
-        
+        actorSpriteRenderer.parry.enabled = true;
+
         yield return new WaitForSeconds(0.3f);
 
-        if(isKnockedBack)
+        if (isKnockedBack)
         {
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.8f);
             GameController.gameControllerInstance.PlayParrySound();
@@ -381,88 +344,61 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
-        if(isKnockedBack){ isKnockedBack = false; }
+        if (isKnockedBack) isKnockedBack = false;
+
         actorSpriteRenderer.parry.StopAnimating();
 
-        if (actorSpriteRenderer.parry.isAnimating == false)
+        if (!actorSpriteRenderer.parry.isAnimating)
         {
-            //Debug.Log("No longer Blocking!");
             actorSpriteRenderer.parry.frame = 0;
-            // actorSpriteRenderer.attack.StopAnimating();
-
             isBlocking = false;
-            actorSpriteRenderer.parry.enabled = isBlocking;
-        }
-        else
-        {
-            // Debug.Log(actorSpriteRenderer.parry.isAnimating);
+            actorSpriteRenderer.parry.enabled = false;
         }
     }
 
-
-    public void ApplyKnockback(Vector2 knockbackDirection, float knockbackForce)
+    public void ApplyKnockback(Vector2 knockbackDirection, float force)
     {
         isKnockedBack = true;
-        // Debug.LogWarning("Applying Knockback on Player!");
         rb.velocity = Vector2.zero;
-        rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        rb.AddForce(knockbackDirection * force, ForceMode2D.Impulse);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the player's attack hits the enemy
         if (collision.CompareTag("EnemyAttack"))
         {
-            EnemyController enemyController = collision.gameObject.GetComponentInParent<EnemyController>();
+            var enemyController = collision.GetComponentInParent<EnemyController>();
+            if (enemyController == null) return;
+
             Vector2 knockbackMoveDirection = (transform.position - enemyController.transform.position).normalized;
 
-            if (enemyController != null && enemyController.isAttacking)
+            if (!enemyController.isAttacking) return;
+
+            if ((isBlocking && isBlockParryTiming) || isBlocking)
             {
-                if (isBlocking && isBlockParryTiming || isBlocking)
-                {
-                    // Debug.Log("Blocked Enemy Attack!");
-                    // collision.enabled = false;
-                    GameController.gameControllerInstance.PlayParrySound();
-                    ApplyKnockback(knockbackMoveDirection, knockbackForce);
-                }
-                else if (!isBlocking && !isBlockParryTiming && canBeHit)
-                {
-                    // Debug.LogWarning("Player is Dead!");
-                    // Destroy the player and instantiate a corpse object
-                    player.isDead = true;
-                    KillPlayer();
-                }
+                GameController.gameControllerInstance.PlayParrySound();
+                ApplyKnockback(knockbackMoveDirection, knockbackForce);
             }
-            else
+            else if (!isBlocking && !isBlockParryTiming && canBeHit)
             {
-                Debug.LogError("Error. Enemy not attacking or controller does not exist");
+                TakeDamage();
             }
         }
-        else
-        if (collision.CompareTag("EnemySpell"))
+        else if (collision.CompareTag("EnemySpell"))
         {
-            LustSpell spell = collision.gameObject.GetComponentInParent<LustSpell>();
+            var spell = collision.GetComponentInParent<LustSpell>();
+            if (spell == null) return;
+
             Vector2 knockbackMoveDirection = (transform.position - spell.transform.position).normalized;
 
-            if (spell != null)
+            if ((isBlocking && isBlockParryTiming) || isBlocking)
             {
-                if (isBlocking && isBlockParryTiming || isBlocking)
-                {
-                    // Debug.Log("Blocked Enemy Attack!");
-                    Destroy(collision.gameObject);
-                    ApplyKnockback(knockbackMoveDirection, spell.knockbackForce);
-                }
-                else if (!isBlocking && !isBlockParryTiming && canBeHit)
-                {
-                    // Debug.LogWarning("Player is Dead!");
-                    // Destroy the player and instantiate a corpse object
-                    player.isDead = true;
-                    KillPlayer();
-                }
+                Destroy(collision.gameObject);
+                ApplyKnockback(knockbackMoveDirection, spell.knockbackForce);
             }
-            else
+            else if (!isBlocking && !isBlockParryTiming && canBeHit)
             {
-                Debug.LogError("Error. Enemy not attacking or controller does not exist");
+                TakeDamage();
             }
         }
     }
@@ -471,7 +407,6 @@ public class PlayerController : MonoBehaviour
     {
         float cameraHeight = Camera.main.orthographicSize;
         float cameraWidth = cameraHeight * Camera.main.aspect;
-
         return new Rect(-cameraWidth, -cameraHeight, 2 * cameraWidth, 2 * cameraHeight);
     }
 
@@ -479,33 +414,56 @@ public class PlayerController : MonoBehaviour
     {
         Rect screenBounds = GetScreenBounds();
 
-        // Check if the new position goes beyond the left or right edge
-        if (transform.position.x > screenBounds.xMax)
-        {
-            transform.position = new Vector3(screenBounds.xMin, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.x < screenBounds.xMin)
-        {
-            transform.position = new Vector3(screenBounds.xMax, transform.position.y, transform.position.z);
-        }
+        Vector3 pos = transform.position;
+        if (pos.x > screenBounds.xMax) pos.x = screenBounds.xMin;
+        else if (pos.x < screenBounds.xMin) pos.x = screenBounds.xMax;
 
-        // Check if the new position goes beyond the top or bottom edge
-        if (transform.position.y > screenBounds.yMax)
+        if (pos.y > screenBounds.yMax) pos.y = screenBounds.yMin;
+        else if (pos.y < screenBounds.yMin) pos.y = screenBounds.yMax;
+
+        transform.position = pos;
+    }
+
+    private void TakeDamage()
+    {
+        heartUI.TakeDamage(1);
+		canBeHit = false;
+
+        if (heartUI.currentHealth <= 0)
         {
-            transform.position = new Vector3(transform.position.x, screenBounds.yMin, transform.position.z);
-        }
-        else if (transform.position.y < screenBounds.yMin)
-        {
-            transform.position = new Vector3(transform.position.x, screenBounds.yMax, transform.position.z);
+            KillPlayer();
         }
     }
 
     private void KillPlayer()
     {
-        
+        player.isDead = true;
         Instantiate(corpsePrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
         GameController.gameControllerInstance.EndGame();
     }
 
-}   
+
+	#region Cooldowns
+
+		private void CanBeHitCooldown()
+		{
+			if (player.isDead) return;
+
+			if (!canBeHit)
+			{
+				var cooldownTimer = 0f;
+
+				cooldownTimer += 0.1f;
+
+				if (cooldownTimer > 1f)
+				{
+					canBeHit = true;
+				}
+
+			}
+		}
+
+	#endregion
+
+}
